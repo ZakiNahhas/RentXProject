@@ -96,8 +96,9 @@
   .cont_img_back_grey {
     position: absolute;
     width: 950px;
-    top: -80px;
-    left: -116px;
+    height: 950px;
+    top: -35px;
+    left: -10px;
   }
   
   .cont_img_back_grey > img {
@@ -115,8 +116,9 @@
   .cont_img_back_ {
     position: absolute;
     width: 950px;
-    top: -80px;
-    left: -116px;
+    height: 950px;
+    top: -35px;
+    left: -106px;
   }
   
   .cont_img_back_ > img {
@@ -383,4 +385,9 @@
 100%{
     opacity: 0;
 }
+}
+.logo {
+  border-radius: 50%;
+  width: .5em;
+  height: .5em;
 }
