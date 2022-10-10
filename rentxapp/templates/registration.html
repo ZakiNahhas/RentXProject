@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+<body>
+    <div class="cotn_principal">
+        <div class="cont_centrar">
+            {% if messages %}
+            <ul class="messages">    
+            {% for message in messages %}    
+                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+            {% endfor %}
+            </ul>
+            {% endif %}
+          <div class="cont_login">
+        <div class="cont_info_log_sign_up">
+              <div class="col_md_login">
+        <div class="cont_ba_opcitiy">
+                
+                <h2>LOGIN</h2>  
+          <p>If you already have an account, please use this form to Login</p> 
+          <button class="btn_login" onclick="cambiar_login()">LOGIN</button>
+          </div>
+          </div>
+        <div class="col_md_sign_up">
+        <div class="cont_ba_opcitiy">
+          <h2>SIGN UP</h2>
+        
+          
+          <p>Not a member? Use this form to sign up</p>
+        
+          <button class="btn_sign_up" onclick="cambiar_sign_up()">SIGN UP</button>
+        </div>
+          </div>
+               </div>
+        
+            
+            <div class="cont_back_info">
+               <div class="cont_img_back_grey">
+               <img src="static\images\oxford-university.jpg" alt="" />
+               </div>
+               
+            </div>
+        <div class="cont_forms" >
+            <div class="cont_img_back_">
+               <img src="static\images\oxford-university.jpg" alt="" />
+               </div>
+               <form action="/login" method="post">
+                {% csrf_token %}
+         <div class="cont_form_login">
+        <a href="#" onclick="ocultar_login_sign_up()" class="material-icons">&nabla;</a>
+           <h2>LOGIN</h2>
+         <input type="text" name="email" placeholder="Email" />
+        <input type="password" name="password" placeholder="Password" />
+        <button class="btn_login" onclick="cambiar_login()">LOGIN</button>
+          </div>
+        </form>
+
+          <form action="/register" method="post">
+            {%csrf_token%}
+           <div class="cont_form_sign_up">
+        <a href="#" onclick="ocultar_login_sign_up()" class="material-icons">&nabla;</a>
+        
+             <h2>SIGN UP</h2>
+        <input type="text" name="firstname" placeholder="First Name" />
+        <input type="text" name="lastname" placeholder="Last Name" />
+        <input type="text" name="email" placeholder="Email" />
+        <input type="password" name="password" placeholder="Password" />
+        <input type="password" name="password_confirm" placeholder="Confirm Password" />
+        <button class="btn_sign_up" onclick="cambiar_sign_up()">SIGN UP</button>
+        </form>
+          </div>
+        
+            </div>
+            
+          </div>
+         </div>
+        </div>
+        <script src="static/js/script.js"></script>
+</body>
+</html>
