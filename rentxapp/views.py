@@ -44,7 +44,7 @@ def login(request):
 
     request.session['firstname'] = user.firstname
     request.session["userid"] = user.id
-    return render(request, "success.html")
+    return render(request, "profile.html")
 
 def logout(request):
     request.session.clear()
@@ -58,4 +58,4 @@ def success_page(request):
     context = {
         "user": User.objects.get(id=request.session["userid"])
     }
-    return render(request, "success.html", context)
+    return render(request, "profile.html", context)

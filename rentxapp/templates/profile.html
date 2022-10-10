@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+<body class="coloring">  
+    <div class="flex2">
+        <p class="text">Rent<span style="color: #1466a4; font-size:50px;">X</span></p>
+        <div class="flex">
+        <a class="ancor" href="/dashboard">Dashboard</a>
+        Welcome {{request.session.firstname}}!
+        <a class="ancor" href="/logout">Log Out</a>
+        </div>
+    </div>
+      <div class="row1-container">
+        <div class="box box-down cyan">
+          <h2>Supervisor</h2>
+          <p>Monitors activity to identify project roadblocks</p>
+          <img src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">
+        </div>
+    
+        <div class="box red">
+          <h2>Team Builder</h2>
+          <p>Scans our talent network to create the optimal team for your project</p>
+          <img src="https://assets.codepen.io/2301174/icon-team-builder.svg" alt="">
+        </div>
+    
+        <div class="box box-down blue">
+          <h2>Calculator</h2>
+          <p>Uses data from past projects to provide better delivery estimates</p>
+          <img src="https://assets.codepen.io/2301174/icon-calculator.svg" alt="">
+        </div>
+      </div>
+      <div class="row2-container">
+      </div>
+</body>
+</html>
