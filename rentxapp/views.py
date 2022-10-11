@@ -57,8 +57,16 @@ def success_page(request):
         messages.error(request, "You must log in to view this page!")
         return redirect('/')
     context = {
-        "user": User.objects.get(id=request.session["userid"])
+        "user": User.objects.get(id=request.session["userid"]),
+        'products': Product.objects.all()
     }
     return render(request, "dashboard.html", context)
 def my_profile(request):
     return render(request, 'profile.html')
+
+def categories(request):
+    return render(request, 'categories.html')
+
+def add_a_product(request):
+    
+    return render(request, 'add_a_product.html')

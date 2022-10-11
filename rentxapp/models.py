@@ -56,11 +56,14 @@ class Rental(models.Model):
     rented_product= models.ForeignKey(Product, related_name="in_rental", on_delete = models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
+    
+    
     
 class Category(models.Model):
     name = models.CharField(max_length=255)
+    
     products= models.ForeignKey(Product, related_name="cateory_of", on_delete = models.CASCADE)
+  
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     

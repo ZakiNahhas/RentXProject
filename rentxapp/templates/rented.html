@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+
+<body class="cotn_principal">
+    <div class="flex2">
+        <p class="text">Rent<span style="color: #ea5353; font-size:50px;">X</span></p>
+        <div class="flex">
+            <a class="ancor" href="/dashboard">Dashboard</a>
+
+            Welcome {{request.session.firstname}} !
+            <a class="ancor" href="/profile">profile</a>
+            <a class="ancor" href="/logout">Log Out</a>
+        </div>
+    </div>
+    <div>
+    <div class="row1-container">
+        <div class="box box-down cyan">
+            <h2>items info</h2>
+            <p>name :</p>
+            <p>description: </p>
+            <p>location</p>
+            <p>price</p>
+            <input type="submit" value="Rent">
+        </div>
+        <img src="https://assets.codepen.io/2301174/icon-team-builder.svg" alt="">
+    </div>
+</body>
+
+</html>
