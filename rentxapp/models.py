@@ -37,15 +37,24 @@ class ProductManager(models.Manager):
             errors["desc"] = "Product Description should be at least 15 characters. "
         if postData['location'] == "":
             errors["location"] = "Product's location is required."
+        if postData['price'] == "":
+            errors["price"] = "Product's price is required."
         
         return errors
         
+class Category(models.Model):
+    name = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
 class Product(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
     offered_by= models.ForeignKey(User, related_name="products_offered", on_delete = models.CASCADE)
+    #product_image=models.ImageField(upload_to='images/', default=None)
     price = models.IntegerField()
     location = models.CharField(max_length=255)
+    category=  models.ForeignKey(Category, related_name="products", on_delete = models.CASCADE,null=True )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = ProductManager() 
@@ -53,17 +62,8 @@ class Product(models.Model):
 class Rental(models.Model):
     renter= models.ForeignKey(User, related_name="provider", on_delete = models.CASCADE)
     rentee= models.ForeignKey(User, related_name="taker", on_delete = models.CASCADE)
-    rented_product= models.ForeignKey(Product, related_name="in_rental", on_delete = models.CASCADE)
+    rented_product= models.OneToOneField(Product, on_delete = models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    
-    
-    
-class Category(models.Model):
-    name = models.CharField(max_length=255)
-    
-    products= models.ForeignKey(Product, related_name="cateory_of", on_delete = models.CASCADE)
-  
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    status= models.IntegerField(default=0)
     

@@ -21,18 +21,18 @@
         <a class="ancor" href="/logout">Log Out</a>
         </div>
         </div>
-        <form method="post"  action="/create" >
+        <form method="post"  action="/update/{{oneproduct.id}}" >
             {% csrf_token %}
             <div class="form-group">
     
               <label for="formGroupExampleInput">name</label>
-              <input type="text" class="form-control" id="formGroupExampleInput" name="name">
+              <input type="text" class="form-control" id="formGroupExampleInput" name="name"  value="{{oneproduct.name}}" >
               </div>
     
               <div class="form-row">
                 <div class="col">
                     <label for="formGroupExampleInput">description</label>
-                  <input type="text" class="form-control" name="desc">
+                  <input type="text" class="form-control" name="desc"  value="{{oneproduct.description}}" >
                 </div>
     
                 
@@ -40,20 +40,21 @@
     
                 <div class="col">
                 <label for="formGroupExampleInput">price</label>
-                  <input type="number" class="form-control" name="price">
+                  <input type="number" class="form-control" name="price"   value="{{oneproduct.price}}">
                 </div>
               </div>
     
-              <div class="form-group">
-                <label for="exampleFormControlTextarea1">location</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="location" ></textarea>
-              </div>
+              <div class="col">
+                <label for="formGroupExampleInput">location</label>
+                  <input type="text" class="form-control" name="location"   value="{{oneproduct.location}}">
+                </div>
     
     
              
     
     
-              <div><P>Select</P><select class="form-select" aria-label="Default select example" name="selectcategory">
+              <div>
+                <P>Select</P><select class="form-select" aria-label="Default select example"  name="selectcategory">
                 
                 {%for cat in cats%}
                 
@@ -64,7 +65,7 @@
             </div>
     
     
-              <button style="margin-top: 70px" type="submit" class="btn btn-primary">Create!</button>
+              <button style="margin-top: 70px" type="submit" class="btn btn-primary">Update!</button>
             
         </form>
 

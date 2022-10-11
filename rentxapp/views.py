@@ -62,11 +62,154 @@ def success_page(request):
     }
     return render(request, "dashboard.html", context)
 def my_profile(request):
-    return render(request, 'profile.html')
+    context={
+        'theuser': User.objects.get(id=request.session['userid'])
+    }
+    return render(request, 'profile.html', context)
 
 def categories(request):
     return render(request, 'categories.html')
 
 def add_a_product(request):
+    context={
+        'cats': Category.objects.all
+    }
     
-    return render(request, 'add_a_product.html')
+    return render(request, 'add_a_product.html',context)
+
+def delproduct(request,id):
+    deleted_product= Product.objects.get(id=int(id))
+    deleted_product.delete()
+
+    
+    return redirect('/my_profile')
+
+def editproduct(request,id):
+    context={
+        "oneproduct" : Product.objects.get(id=id),
+        'cats': Category.objects.all
+
+    }
+    
+    return render(request, 'edit.html', context)
+
+
+
+def updateproduct(request,id):
+    
+    errors = Product.objects.basic_validator(request.POST)
+    if len(errors) > 0:
+        for key, value in errors.items():
+            messages.error(request, value)
+        return redirect('/edit/'+str(id))
+    else:
+
+        productinstance = Product.objects.get(id=id)
+        
+        productinstance.name=request.POST["name"]
+        productinstance.price=request.POST["price"]
+        productinstance.location=request.POST["location"]
+        productinstance.description=request.POST["desc"]
+        category_z= Category.objects.get(id=request.POST['selectcategory'])
+        productinstance.category=category_z
+        productinstance.save()
+           
+        
+        return redirect("/my_profile")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def adminform(request):
+    
+    return render(request, 'adminform.html')
+
+def admincreate(request):
+    
+    Category.objects.create(name=request.POST['name'])
+    return redirect("/adminz/dash")
+
+
+
+
+def admindash(request):
+    context={
+        'cats': Category.objects.all
+    }
+    
+    return render(request, 'admindash.html',context)
+
+
+def delcat(request,id):
+    deleted_cat= Category.objects.get(id=int(id))
+    deleted_cat.delete()
+
+    
+    return redirect("/adminz/dash")
+
+
+
+
+
+
+
+
+
+
+
+def offer(request):
+    context={
+        'cats': Category.objects.all
+    }
+    return render(request, 'newitem.html',context)
+
+
+def create(request):
+     errors = Product.objects.basic_validator(request.POST)
+     if len(errors) > 0:
+        for key, value in errors.items():
+            messages.error(request, value)
+            return redirect('/add_a_product')
+     else:
+        userx= User.objects.get(id=request.session['userid'])
+        category_x= Category.objects.get(id=request.POST['selectcategory'])
+        
+        Product.objects.create(name=request.POST['name'], offered_by=userx, description=request.POST['desc'],  price=request.POST['price'],location=request.POST['location'], category=category_x)
+        
+
+        return redirect('/show')
+
+
+def show(request):
+    context={
+        'products': Product.objects.all()
+    }
+    return render(request, 'show.html', context)

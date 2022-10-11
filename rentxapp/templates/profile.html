@@ -15,13 +15,22 @@
         <div class="flex">
         <a class="ancor" href="/dashboard">Dashboard</a>
         Welcome {{request.session.firstname}}!
+        <a href="/adminz/dash">Admin dash</a>
+        <a href="/adminz/form">Admin form</a>
         <a class="ancor" href="/logout">Log Out</a>
         </div>
     </div>
       <div class="row1-container">
         <div class="box box-down cyan">
-          <h2>Supervisor</h2>
-          <p>Monitors activity to identify project roadblocks</p>
+         
+          <h2>My offered products</h2>
+   
+    {%for product in theuser.products_offered.all%}
+   <div><a href="/show/{{product.id}}">{{product.name}}</a></div>
+    <div><a href="/edit/{{product.id}}">edit</a></div>
+    <div><a href="/del/{{product.id}}">delete</a></div>
+   {%endfor%}
+          
           <img src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">
         </div>
     
@@ -32,8 +41,18 @@
         </div>
     
         <div class="box box-down blue">
-          <h2>Calculator</h2>
-          <p>Uses data from past projects to provide better delivery estimates</p>
+          <h2>My orders</h2>
+        
+    {%for order in theuser.taker.all%}
+    {%if order.status == 0%}
+
+   <div><a href="/show/{{product.id}}">{{order.id}}</a></div>
+   <p>{{order.renter.first_name}}</p>
+   <p>{{order.rentee.first_name}}</p>
+   <p>{{order.rented_product.name}}</p>
+   <a href="/unrent/{{order.id}}">{{order.status}}</a>
+   {%endif%}
+   {%endfor%}
           <img src="https://assets.codepen.io/2301174/icon-calculator.svg" alt="">
         </div>
       </div>
