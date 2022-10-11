@@ -4,40 +4,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
+    <title>Dashboard</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
-<body class="coloring">  
+<body class="coloring">
     <div class="flex2">
         <p class="text">Rent<span style="color: #ea5353; font-size:50px;">X</span></p>
         <div class="flex">
         <a class="ancor" href="/dashboard">Dashboard</a>
+        <a class="ancor" href="/my_profile">My Profile</a>
         Welcome {{request.session.firstname}}!
         <a class="ancor" href="/logout">Log Out</a>
         </div>
+        </div>
+    <div class="flex3 mt-4">
+        <div class="flex4">
+        <p> <a href="/office"><img class="images mt-5" src="static\images\office.png" alt="image of an office"></a></p>
+        <p><a class="ancor2" href="/office">Office</a></p>
+        </div>
+        <div class="flex4">
+        <a href="/electronics"><img class="images mt-5" src="static\images\electronics.png"  alt="image of electronics"></a>
+        <p><a class="ancor2" href="/electronics">Electronics</a></p>
+        </div>
+        <div class="flex4">
+        <a href="/homeware"><img class="images mt-5" src="static\images\furniture.png" alt="image of homeware"></a>
+        <p><a class="ancor2" href="/homeware">Homeware</a></p>
+        </div>
     </div>
-      <div class="row1-container">
-        <div class="box box-down cyan">
-          <h2>Supervisor</h2>
-          <p>Monitors activity to identify project roadblocks</p>
-          <img src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">
-        </div>
-    
-        <div class="box red">
-          <h2>Your Info</h2>
-          <p>{{request.session.firstname}} {{request.session.lastname}}</p>
-          <img src="https://assets.codepen.io/2301174/icon-team-builder.svg" alt="">
-        </div>
-    
-        <div class="box box-down blue">
-          <h2>Calculator</h2>
-          <p>Uses data from past projects to provide better delivery estimates</p>
-          <img src="https://assets.codepen.io/2301174/icon-calculator.svg" alt="">
-        </div>
-      </div>
-      <div class="row2-container">
-      </div>
 </body>
 </html>
