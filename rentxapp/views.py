@@ -25,7 +25,7 @@ def register(request):
         user=User.objects.last()
         request.session['firstname'] = user.firstname
         request.session["userid"] = user.id
-    return redirect('/success')
+    return redirect('/dashboard')
 
 def login(request):
     existing_user = User.objects.filter(email=request.POST['email'])
@@ -43,8 +43,9 @@ def login(request):
         return redirect('/')
 
     request.session['firstname'] = user.firstname
+    request.session['lastname'] = user.lastname
     request.session["userid"] = user.id
-    return render(request, "profile.html")
+    return redirect('/dashboard')
 
 def logout(request):
     request.session.clear()
@@ -58,4 +59,6 @@ def success_page(request):
     context = {
         "user": User.objects.get(id=request.session["userid"])
     }
-    return render(request, "profile.html", context)
+    return render(request, "dashboard.html", context)
+def my_profile(request):
+    return render(request, 'profile.html')

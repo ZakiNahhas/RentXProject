@@ -26,3 +26,41 @@ class User(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = UserManager()
+
+
+class ProductManager(models.Manager):
+    def basic_validator(self, postData):
+        errors = {}
+        if postData['name'] == "":
+            errors["name"] = "Name of the proudct is required."
+        if len(postData['desc']) < 15:
+            errors["desc"] = "Product Description should be at least 15 characters. "
+        if postData['location'] == "":
+            errors["location"] = "Product's location is required."
+        
+        return errors
+        
+class Product(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+    offered_by= models.ForeignKey(User, related_name="products_offered", on_delete = models.CASCADE)
+    price = models.IntegerField()
+    location = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    objects = ProductManager() 
+
+class Rental(models.Model):
+    renter= models.ForeignKey(User, related_name="provider", on_delete = models.CASCADE)
+    rentee= models.ForeignKey(User, related_name="taker", on_delete = models.CASCADE)
+    rented_product= models.ForeignKey(Product, related_name="in_rental", on_delete = models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    
+class Category(models.Model):
+    name = models.CharField(max_length=255)
+    products= models.ForeignKey(Product, related_name="cateory_of", on_delete = models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
