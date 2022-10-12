@@ -124,6 +124,27 @@ def updateproduct(request,id):
         
         return redirect("/my_profile")
 
+
+
+def renting(request,id):
+    product_x= Product.objects.get(id=int(id))
+    userof= product_x.offered_by.id
+    renter= User.objects.get(id=userof)
+    rentee=  User.objects.get(id=request.session['userid'])
+    Rental.objects.create(renter=renter,rentee=rentee,rented_product=product_x, status=0)
+    return redirect('/rentdone/'+str(id))
+
+def rentdone(request,id):
+    rentedproduct=Product.objects.get(id=int(id))
+    rent_of_this_product = rentedproduct
+
+    context={
+        'rentedproduct':Product.objects.get(id=int(id)),
+        'ordertaker': User.objects.get(id=request.session['userid']),
+        'rents': Rental.objects.all()
+    }
+    return render(request, 'form.html', context)
+
 def adminform(request):
     
     return render(request, 'adminform.html')

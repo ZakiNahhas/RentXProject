@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <div  style="width:500px; height:300px; border:1px solid black; padding:10px; margin: 0 auto; margin-top:20px; background-color: rgb(139, 242, 208); " >
+  <input type="hidden"  name="rentid"  value="{{rent.id}}">
+  <h1>{{ordertaker.taker.id}}</h1>
+   <p>Rented product : {{rentedproduct.name}}</p>
+   <p>product category : {{rentedproduct.category.name}}</p>
+   <p>Rent price: {{rentedproduct.price}}</p>
+   <p>Renter name: {{rentedproduct.offered_by.firstname}}    {{rentedproduct.offered_by.lastname}}</p>
+   <p>Rentee name: {{ordertaker.firstname}}    {{ordertaker.lastname}}</p> 
+   
+   <p>Order id: {{rentedproduct.inrenting.id}}</p>
+   <a href="/dashboard">go back</a>
+
+   
+   
+
+<!-- {%for rent in rents%}
+
+<p>{{rent.renter.first_name}} </p>
+<p>{{rent.rentee.first_name}} </p>
+<p>{{rent.id}}</p>
+{%endfor%}
+   <form action="">
+    <button>OK</button>
+   </form>  -->
+  
+
+  
+
+
+
+</body>
+</html> 

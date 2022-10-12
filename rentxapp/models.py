@@ -62,7 +62,7 @@ class Product(models.Model):
 class Rental(models.Model):
     renter= models.ForeignKey(User, related_name="provider", on_delete = models.CASCADE)
     rentee= models.ForeignKey(User, related_name="taker", on_delete = models.CASCADE)
-    rented_product= models.OneToOneField(Product, on_delete = models.CASCADE)
+    rented_product= models.OneToOneField(Product, related_name="inrenting",on_delete = models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     status= models.IntegerField(default=0)
