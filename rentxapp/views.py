@@ -77,6 +77,13 @@ def add_a_product(request):
     
     return render(request, 'add_a_product.html',context)
 
+
+def oneproduct(request,id):
+    context={
+        'oneproduct': Product.objects.get(id=int(id))
+    }
+    return render(request, 'product.html', context)
+
 def delproduct(request,id):
     deleted_product= Product.objects.get(id=int(id))
     deleted_product.delete()

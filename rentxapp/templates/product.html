@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <div  style="width:500px; height:300px; border:1px solid black; padding:10px; margin: 0 auto; margin-top:20px; background-color: rgb(139, 242, 208); " >
+    <div style="margin-top:10px"  ><a href="/dashboard" >Go back</a></div>
+
+   
+    <h1>Product ID {{oneproduct.id}}</h1> 
+   <p>Product Name: {{oneproduct.name}}</p>
+   <p>Price: {{oneproduct.price}}</p>
+   <p>Description: {{oneproduct.description}}</p>
+   <p>Offered by: {{oneproduct.offered_by.firstname}} {{oneproduct.offered_by.lastname}}</p>
+  
+
+  
+
+  <div>
+    <form action="/renting/{{oneproduct.id}}" method="post">
+        {% csrf_token %}
+     <button>Rent</button>
+    </form>
+ </div>
+
+</div>
+
+
+
+
+</body>
+</html>
