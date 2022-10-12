@@ -26,9 +26,9 @@
           <h2>My offered products</h2>
    
     {%for product in theuser.products_offered.all%}
-   <div><a href="/show/{{product.id}}">{{product.name}}</a></div>
-    <div><a href="/edit/{{product.id}}">edit</a></div>
-    <div><a href="/del/{{product.id}}">delete</a></div>
+   <div class="flex5"><a href="/show/{{product.id}}">{{product.name}}</a>
+    <a href="/edit/{{product.id}}">edit</a>
+    <a href="/del/{{product.id}}">delete</a></div>
    {%endfor%}
           
           <img src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">

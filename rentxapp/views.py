@@ -77,6 +77,13 @@ def add_a_product(request):
     
     return render(request, 'add_a_product.html',context)
 
+
+def oneproduct(request,id):
+    context={
+        'oneproduct': Product.objects.get(id=int(id))
+    }
+    return render(request, 'product.html', context)
+
 def delproduct(request,id):
     deleted_product= Product.objects.get(id=int(id))
     deleted_product.delete()
@@ -117,37 +124,6 @@ def updateproduct(request,id):
         
         return redirect("/my_profile")
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 def adminform(request):
     
     return render(request, 'adminform.html')
@@ -156,9 +132,6 @@ def admincreate(request):
     
     Category.objects.create(name=request.POST['name'])
     return redirect("/adminz/dash")
-
-
-
 
 def admindash(request):
     context={
@@ -174,16 +147,6 @@ def delcat(request,id):
 
     
     return redirect("/adminz/dash")
-
-
-
-
-
-
-
-
-
-
 
 def offer(request):
     context={

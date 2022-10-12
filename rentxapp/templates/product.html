@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+<body class="coloring">  
+  <div class="flex2">
+      <p class="text">Rent<span style="color: #ea5353; font-size:50px;">X</span></p>
+      <div class="flex">
+      <a class="ancor" href="/dashboard">Dashboard</a>
+      Welcome {{request.session.firstname}}!
+      <a href="/adminz/dash">Admin dash</a>
+      <a href="/adminz/form">Admin form</a>
+      <a class="ancor" href="/logout">Log Out</a>
+      </div>
+  </div>
+<div class="wrapper">
+  <div class="product-img">
+    <img src="http://bit.ly/2tMBBTd" height="420" width="327">
+  </div>
+  <div class="product-info">
+    <div class="product-text">
+      <h1>{{oneproduct.name}}</h1>
+      <br>
+      <h2>Offered by: {{oneproduct.offered_by.firstname}} {{oneproduct.offered_by.lastname}} <hr style="margin-right: 29px;"> Location: {{oneproduct.location}}</h2>
+      <h2></h2>
+      <p>Product description: <br>{{oneproduct.description}}</p>
+    </div>
+    <p class="textp">Price: ₪{{oneproduct.price}}</p>
+    <form action="/renting/{{oneproduct.id}}" method="post">
+      {% csrf_token %}
+   <input class="btn3" type="submit" value="Rent">
+  </form>
+  </div>
+  
+</div>
+
+</body>
+</html>
