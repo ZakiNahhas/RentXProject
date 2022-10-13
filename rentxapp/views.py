@@ -3,8 +3,20 @@ from django.contrib import messages
 from .models import *
 import bcrypt
 
-def index(request):
+def cover(request):
+
+    return render(request, "cover.html")
+
+def login_page(request):
+
+    return render(request, "login.html")
+
+def register_page(request):
+
     return render(request, "registration.html")
+
+# def index(request):
+#     return render(request, "cover.html")
 
 def register(request):
     errors = User.objects.basic_validator(request.POST)
@@ -13,7 +25,6 @@ def register(request):
             messages.error(request, value)
         return redirect('/')
     else:
-        
         password = request.POST['password']
         pw_hash = bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt()).decode()  
         user = User.objects.create(
@@ -61,89 +72,94 @@ def success_page(request):
         'products': Product.objects.all()
     }
     return render(request, "dashboard.html", context)
+
 def my_profile(request):
     context={
-        'theuser': User.objects.get(id=request.session['userid'])
+        'user': User.objects.get(id=request.session['userid'])
     }
     return render(request, 'profile.html', context)
 
-def categories(request):
-    return render(request, 'categories.html')
+# def categories(request):
+#     return render(request, 'categories.html')
 
 def add_a_product(request):
     context={
-        'cats': Category.objects.all
+        'categories': Category.objects.all(),
+        'products': Product.objects.all()
     }
     
     return render(request, 'add_a_product.html',context)
 
-
-def oneproduct(request,id):
-    context={
-        'oneproduct': Product.objects.get(id=int(id))
-    }
-    return render(request, 'product.html', context)
-
-def delproduct(request,id):
+def delete_product(request,id):
     deleted_product= Product.objects.get(id=int(id))
     deleted_product.delete()
 
     
     return redirect('/my_profile')
 
-def editproduct(request,id):
-    context={
-        "oneproduct" : Product.objects.get(id=id),
-        'cats': Category.objects.all
+# def editproduct(request,id):
+#     context={
+#         "oneproduct" : Product.objects.get(id=id),
+#         'cats': Category.objects.all
 
-    }
+#     }
     
-    return render(request, 'edit.html', context)
+#     return render(request, 'edit.html', context)
 
 
 
-def updateproduct(request,id):
+# def updateproduct(request,id):
     
-    errors = Product.objects.basic_validator(request.POST)
-    if len(errors) > 0:
-        for key, value in errors.items():
-            messages.error(request, value)
-        return redirect('/edit/'+str(id))
-    else:
+#     errors = Product.objects.basic_validator(request.POST)
+#     if len(errors) > 0:
+#         for key, value in errors.items():
+#             messages.error(request, value)
+#         return redirect('/edit/'+str(id))
+#     else:
 
-        productinstance = Product.objects.get(id=id)
+#         productinstance = Product.objects.get(id=id)
         
-        productinstance.name=request.POST["name"]
-        productinstance.price=request.POST["price"]
-        productinstance.location=request.POST["location"]
-        productinstance.description=request.POST["desc"]
-        category_z= Category.objects.get(id=request.POST['selectcategory'])
-        productinstance.category=category_z
-        productinstance.save()
+#         productinstance.name=request.POST["name"]
+#         productinstance.price=request.POST["price"]
+#         productinstance.location=request.POST["location"]
+#         productinstance.description=request.POST["desc"]
+#         category_z= Category.objects.get(id=request.POST['selectcategory'])
+#         productinstance.category=category_z
+#         productinstance.save()
            
         
-        return redirect("/my_profile")
+#         return redirect("/my_profile")
 
 
 
-def renting(request,id):
-    product_x= Product.objects.get(id=int(id))
-    userof= product_x.offered_by.id
-    renter= User.objects.get(id=userof)
-    rentee=  User.objects.get(id=request.session['userid'])
-    Rental.objects.create(renter=renter,rentee=rentee,rented_product=product_x, status=0)
-    return redirect('/rentdone/'+str(id))
 
-def rentdone(request,id):
-    rentedproduct=Product.objects.get(id=int(id))
-    rent_of_this_product = rentedproduct
 
-    context={
-        'rentedproduct':Product.objects.get(id=int(id)),
-        'ordertaker': User.objects.get(id=request.session['userid']),
-        'rents': Rental.objects.all()
-    }
-    return render(request, 'form.html', context)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def adminform(request):
     
@@ -153,6 +169,9 @@ def admincreate(request):
     
     Category.objects.create(name=request.POST['name'])
     return redirect("/adminz/dash")
+
+
+
 
 def admindash(request):
     context={
@@ -169,9 +188,19 @@ def delcat(request,id):
     
     return redirect("/adminz/dash")
 
+
+
+
+
+
+
+
+
+
+
 def offer(request):
     context={
-        'cats': Category.objects.all
+        'categories': Category.objects.all
     }
     return render(request, 'newitem.html',context)
 
@@ -189,7 +218,7 @@ def create(request):
         Product.objects.create(name=request.POST['name'], offered_by=userx, description=request.POST['desc'],  price=request.POST['price'],location=request.POST['location'], category=category_x)
         
 
-        return redirect('/show')
+        return redirect('/my_profile')
 
 
 def show(request):

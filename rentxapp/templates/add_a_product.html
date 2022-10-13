@@ -12,7 +12,137 @@
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
 
-<body class="coloring" style="margin: 0 auto; width:800px; height:900px; margin-top:20px "   >
+<body>
+ <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-none d-lg-block" style="z-index: 2000;">
+      <div class="container-fluid">
+        <!-- Navbar brand -->
+        <a class="navbar-brand nav-link" target="_blank" href="https://mdbootstrap.com/docs/standard/">
+          <strong>rent<span class="text-danger">X</span></strong>
+        </a>
+        <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarExample01"
+          aria-controls="navbarExample01" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarExample01">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" aria-current="page" href="#intro">My Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.youtube.com/channel/UC5CF7mLQZhvx8O5GODZAhdA" rel="nofollow"
+                target="_blank"></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://mdbootstrap.com/docs/standard/" target="_blank">Dashboard</a>
+            </li>
+          </ul>
+
+          <ul class="navbar-nav d-flex flex-row">
+           
+            <li class="nav-item me-3 me-lg-0">
+              <a class="nav-link" href="https://www.youtube.com/channel/UC5CF7mLQZhvx8O5GODZAhdA" rel="nofollow"
+                target="_blank">
+                <i class="fab fa-youtube"></i>
+              </a>
+            </li>
+            <li class="nav-item me-3 me-lg-0">
+              <a class="nav-link" href="https://www.facebook.com/mdbootstrap" rel="nofollow" target="_blank">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+            </li>
+            <li class="nav-item me-3 me-lg-0">
+              <a class="nav-link" href="https://twitter.com/MDBootstrap" rel="nofollow" target="_blank">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </li>
+            <li class="nav-item me-3 me-lg-0">
+              <a class="nav-link" href="https://github.com/mdbootstrap/mdb-ui-kit" rel="nofollow" target="_blank">
+                <i class="fab fa-github"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+  <section class="vh-100 bg-image img-fluid"
+  style="background: linear-gradient(to right, rgba(16, 17, 16, 0.5), rgba(250, 250, 251, 0.5))">
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-5">Add a P<span class="text-danger">r</span>oduct</h2>
+
+              <form method="post" action="/create">
+                {% csrf_token %}
+                <div class="form-outline mb-4">
+                  <input type="text" id="form3Example1cg" name="name" class="form-control form-control-lg" placeholder="Product Name"/>
+                  <!-- <label class="form-label" for="form3Example1cg">Your Name</label> -->
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="text" id="form3Example1cg" name="desc" class="form-control form-control-lg" placeholder="Description"/>
+                  <!-- <label class="form-label" for="form3Example1cg">Your Name</label> -->
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="number" id="form3Example1cg" name="price" class="form-control form-control-lg" placeholder="Price"/>
+                  <!-- <label class="form-label" for="form3Example1cg">Your Name</label> -->
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="text" id="form3Example1cg" name="location" class="form-control form-control-lg" placeholder="Location"/>
+                  <!-- <label class="form-label" for="form3Example1cg">Your Name</label> -->
+                </div>
+
+                <div class="form-outline mb-4">
+                <select class="form-select" name="selectcategory" aria-label="Default select example">
+                  <option selected>Select Catigotios</option>
+                  <option value="1">Electronics</option>
+                  <option value="2">Office</option>
+                  <option value="3">Homeware</option>
+                </select>
+              </div>
+
+              <div class="form-outline mb-4">
+                <label class="form-label" for="customFile">Product Image</label>
+                <input type="file" class="form-control" id="customFile" name="image" accept="image/*" />
+                <!-- <input type="file" name="image" accept="image/*"> -->
+                <!-- <input type="submit" value="submit"> -->
+              </div>
+
+                <!-- <div class="form-check d-flex justify-content-center mb-5">
+                  <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" />
+                  <label class="form-check-label" for="form2Example3g">
+                    I agree all statements in <a href="#!" class="text-body"><u>Terms of service</u></a>
+                  </label>
+                </div> -->
+
+                <div class="d-flex justify-content-center">
+                  <button type="submit"
+                    class="btn btn-dark btn-block btn-lg gradient-custom-4">Add Your Product</button>
+                  </form>
+                </div>
+
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- 
     <div class="flex2">
         <p class="text">Rent<span style="color: #ea5353; font-size:50px;">X</span></p>
         <div class="flex">
@@ -74,7 +204,7 @@
                 <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
             {% endfor %}
         </ul>
-        {% endif %}
+        {% endif %} -->
 </body>
 
 </html>

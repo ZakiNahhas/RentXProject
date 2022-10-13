@@ -5,79 +5,72 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form</title>
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
 <body>
-  
-    <div class="cotn_principal">
-      <div class="cont_centrar">
-            {% if messages %}
-            <ul class="messages">    
-            {% for message in messages %}    
-                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
-            {% endfor %}
-            </ul>
-            {% endif %}
-          <div class="cont_login">
-        <div class="cont_info_log_sign_up">
-              <div class="col_md_login">
-        <div class="cont_ba_opcitiy">
-                <h2>LOGIN</h2>  
-          <p>We're happy to see you again! Use this form to Login</p> 
-          <button class="btn_login" onclick="cambiar_login()">LOGIN</button>
-          </div>
-          </div>
-        <div class="col_md_sign_up">
-        <div class="cont_ba_opcitiy">
-          <h2>SIGN UP</h2>
-        
-          
-          <p>Welcome to <span style="color: #4c4e61;">Rent</span><span style="color: #ea5353; font-size:19px;">X</span>! Use this form to sign up</p>
-        
-          <button class="btn_sign_up" onclick="cambiar_sign_up()">SIGN UP</button>
-        </div>
-          </div>
-               </div>
-            <div class="cont_back_info">
-               <div class="cont_img_back_grey">
-               <img src="static\images\sharing.jpg" alt="" />
-               </div>
-               
-            </div>
-        <div class="cont_forms" >
-            <div class="cont_img_back_">
-               <img src="static\images\sharing.jpg" alt="" />
-               </div>
-               <form action="/login" method="post">
-                {% csrf_token %}
-         <div class="cont_form_login">
-        <a href="#" onclick="ocultar_login_sign_up()" class="material-icons">&nabla;</a>
-           <h2>LOGIN</h2>
-         <input type="text" name="email" placeholder="Email" />
-        <input type="password" name="password" placeholder="Password" />
-        <button class="btn_login" onclick="cambiar_login()">LOGIN</button>
-          </div>
-        </form>
+  <section class="vh-100 bg-image"
+  style="background-image: url();">
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-5">C<span class="text-danger">r</span>eate an account</h2>
 
-          <form action="/register" method="post">
-            {%csrf_token%}
-           <div class="cont_form_sign_up">
-        <a href="#" onclick="ocultar_login_sign_up()" class="material-icons">&nabla;</a>
-        
-             <h2>SIGN UP</h2>
-        <input type="text" name="firstname" placeholder="First Name" />
-        <input type="text" name="lastname" placeholder="Last Name" />
-        <input type="text" name="email" placeholder="Email" />
-        <input type="password" name="password" placeholder="Password" />
-        <input type="password" name="password_confirm" placeholder="Confirm Password" />
-        <button class="btn_sign_up" onclick="cambiar_sign_up()">SIGN UP</button>
-        </form>
-          </div>
+              <form method="post" action="/register">
+                {% csrf_token %}
+                <div class="form-outline mb-4">
+                  <input type="text" id="form3Example1cg" name="firstname" class="form-control form-control-lg" placeholder="First Name"/>
+                  <!-- <label class="form-label" for="form3Example1cg">Your Name</label> -->
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="text" id="form3Example1cg" name="lastname" class="form-control form-control-lg" placeholder="Last Name"/>
+                  <!-- <label class="form-label" for="form3Example1cg">Your Name</label> -->
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="email" id="form3Example3cg" name="email" class="form-control form-control-lg" placeholder="Your Email" />
+                  <!-- <label class="form-label" for="form3Example3cg">Your Email</label> -->
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="password" id="form3Example4cg" name="password" class="form-control form-control-lg" placeholder="Password" />
+                  <!-- <label class="form-label" for="form3Example4cg">Password</label> -->
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="password" id="form3Example4cdg" name="password_confirm" class="form-control form-control-lg" placeholder="Repeat your password"/>
+                  <!-- <label class="form-label" for="form3Example4cdg">Repeat your password</label> -->
+                </div>
+
+                <!-- <div class="form-check d-flex justify-content-center mb-5">
+                  <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" />
+                  <label class="form-check-label" for="form2Example3g">
+                    I agree all statements in <a href="#!" class="text-body"><u>Terms of service</u></a>
+                  </label>
+                </div> -->
+
+                <div class="d-flex justify-content-center">
+                  <button type="submit"
+                    class="btn btn-dark btn-block btn-lg gradient-custom-4">Register</button>
+                </div>
+
+                <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="/login_page"
+                    class="fw-bold text-body"><u>Login here</u></a></p>
+
+              </form>
+
             </div>
           </div>
-         </div>
-        <script src="static/js/script.js"></script>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 </body>
 </html>

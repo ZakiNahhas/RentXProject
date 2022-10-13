@@ -30,9 +30,12 @@
             <td>{{product.name}}</td>
             <td>{{product.description}}</td>
             <td>{{product.price}}</td>
+             
             <td>{{product.category.name}}</td>
-            <td>{{product.offered_by.firstname}} {{product.offered_by.lastname}}</td>
+             
+            <td>{{product.offered_by.first_name}}   {{product.offered_by.last_name}}</td>
             <td>{{product.product_image}}</td>
+            <td><img src="{{ product.product_image.url }}" style="width:50px; height:50px"></td>
            
             <!-- <td><a href="/show/{{product.id}}">Show</a></td> -->
 

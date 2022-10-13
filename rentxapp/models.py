@@ -22,7 +22,6 @@ class User(models.Model):
     lastname = models.CharField(max_length=75, blank = False, null = True)
     email = models.CharField(max_length=255, blank = False)
     password = models.CharField(max_length=75, blank = False)
-    password_confirm = models.CharField(max_length=75, blank = False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = UserManager()
@@ -62,7 +61,7 @@ class Product(models.Model):
 class Rental(models.Model):
     renter= models.ForeignKey(User, related_name="provider", on_delete = models.CASCADE)
     rentee= models.ForeignKey(User, related_name="taker", on_delete = models.CASCADE)
-    rented_product= models.OneToOneField(Product, related_name="inrenting",on_delete = models.CASCADE)
+    rented_product= models.OneToOneField(Product, on_delete = models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     status= models.IntegerField(default=0)
