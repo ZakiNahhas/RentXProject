@@ -14,10 +14,10 @@
     <div class="container py-5">
       <div class="row">
         <div class="col">
-          <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+          <nav aria-label="breadcrumb" class="bg-dark rounded-3 p-3 mb-4">
             <ol class="breadcrumb mb-0">
-              <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
-              <li class="breadcrumb-item"><a href="/logout">Log Out</a></li>
+              <li class="breadcrumb-item"><a  style="text-decoration: none; color: white;" href="/dashboard">Dashboard</a></li>
+              <li class="breadcrumb-item"><a  style="text-decoration: none; color: white;" href="/logout">Log Out</a></li>
               <li class="breadcrumb-item active" aria-current="page">Welcome {{request.session.firstname}}!</li>
             </ol>
           </nav>
@@ -30,16 +30,16 @@
             <div class="card-body text-center">
               <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
                 class="rounded-circle img-fluid" style="width: 150px;">
-              <h5 class="my-3">John Smith</h5>
-              <p class="text-muted mb-1">Full Stack Developer</p>
-              <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
+              <h5 class="my-3">{{user.firstname}} {{user.lastname}}</h5>
+              <p class="text-muted mb-1">{{user.email}}</p>
+              <p class="text-muted mb-4">Mobile number</p>
               <div class="d-flex justify-content-center mb-2">
                 <!-- <button type="button" class="btn btn-primary">Follow</button>
                 <button type="button" class="btn btn-outline-primary ms-1">Message</button> -->
               </div>
             </div>
           </div>
-          <div class="card mb-4 mb-lg-0">
+          <!-- <div class="card mb-4 mb-lg-0">
             <div class="card-body p-0">
               <ul class="list-group list-group-flush rounded-3">
                 <li class="list-group-item d-flex justify-content-between align-items-center p-3">
@@ -64,55 +64,11 @@
                 </li>
               </ul>
             </div>
-          </div>
+          </div> -->
         </div>
         <div class="col-lg-8">
-          <div class="card mb-4">
-            <div class="card-body">
-              <div class="row">
-                <div class="col-sm-3">
-                  <p class="mb-0">Full Name</p>
-                </div>
-                <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{user.firstname}} {{user.lastname}}</p>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-sm-3">
-                  <p class="mb-0">Email</p>
-                </div>
-                <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{user.email}}</p>
-                </div>
-              </div>
-              <!-- <div class="row">
-                <div class="col-sm-3">
-                  <p class="mb-0">Phone</p>
-                </div>
-                <div class="col-sm-9">
-                  <p class="text-muted mb-0">(097) 234-5678</p>
-                </div>
-              </div> -->
-              <hr>
-              <div class="row">
-                <div class="col-sm-3">
-                  <p class="mb-0">Mobile</p>
-                </div>
-                <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{user.mobile}}</p>
-                </div>
-              </div>
-              <div class="row">
-                <!-- <div class="col-sm-3">
-                  <p class="mb-0">Address</p>
-                </div>
-                <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{user.location}}</p>
-                </div> -->
-              </div>
-            </div>
-          </div>
+          <!-- <div class="card mb-4">
+          </div> -->
           <div class="row">
             <div class="col-md-6">
               <div class="card mb-4 mb-md-0">
@@ -122,22 +78,33 @@
 
                   {%for product in user.products_offered.all%}
                     <div>
-                      <a href="/show/{{product.id}}">View</a>
-                      <p>{{product.name}}</p>
-                      <div class="d-flex justify-content-around">
-                      <div class="d-flex justify-content-center">
+                      <!-- <div><p>{{product.name}}</p></div> -->
+                      <div class="d-flex justify-content-between">
+                        <div class="d-flex flex-row mt-3 h6">{{product.name}}</div>
+                        
+                      <!-- <div class="d-flex justify-content-center">
                         <button type="submit"
                           class="btn btn-dark btn-block btn-lg gradient-custom-4"><a href="/delete/{{product.id}}">Delete</a></button>
                       </div>
                       <div class="d-flex justify-content-center">
                         <button type="submit"
                           class="btn btn-dark btn-block btn-lg gradient-custom-4"><a href="/edit/{{product.id}}">Edit</a></button>
+                      </div> -->
+                      <div class="d-flex flex-row mt-3">
+                        <button type="button" class="btn btn-dark flex-fill me-1" data-mdb-ripple-color="dark">
+                          <a style="text-decoration: none; color: white;" href="/show/{{product.id}}">Show</a>
+                        </button>
+                        <button type="button" class="btn btn-dark flex-fill ms-1"><a  style="text-decoration: none; color: white;" href="/edit/{{product.id}}">Edit</a></button>
+                        <button type="button" class="btn btn-danger flex-fill ms-1"><a  style="text-decoration: none; color: white;" href="/delete/{{product.id}}">Delete</a></button>
                       </div>
                     </div>
                     <!-- <a href="/edit/{{product.id}}">edit</a> -->
                     <!-- <a href="/delete/{{product.id}}">delete</a> -->
                   </div>
                   {%endfor%}
+
+
+                  
 
 
                   <!-- <p class="mb-1" style="font-size: .77rem;">Web Design</p>
@@ -208,8 +175,8 @@
   </section>
 
 
-
-  <div class="flex2">
+<!-- 
+    <div class="flex2">
         <p class="text">Rent<span style="color: #ea5353; font-size:50px;">X</span></p>
         <div class="flex">
         <a class="ancor" href="/dashboard">Dashboard</a>
@@ -257,5 +224,235 @@
       </div>
       <div class="row2-container">
       </div> -->
+      
+      <section style="background-color: #eee;">
+        {%for product in user.products_offered.all%}
+        <div class="container py-5">
+          <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6 col-xl-4">
+              <div class="card text-black">
+                <i class="fab fa-apple fa-lg pt-3 pb-1 px-3"></i>
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/3.webp"
+                  class="card-img-top" alt="Apple Computer" />
+                <div class="card-body">
+                  <div class="text-center">
+                    <h5 class="card-title">{{product.name}}</h5>
+                    <p class="text-muted mb-4">{{product.description}}</p>
+                  </div>
+                  <div>
+                    <div class="d-flex justify-content-between">
+                      <span>Location</span><span>{{product.location}}</span>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-between total font-weight-bold mt-4">
+                    <span>Price</span><span>{{product.price}}</span>
+                  </div>
+
+                  <div class="d-flex flex-row mt-4">
+                    <button type="button" class="btn btn-primary flex-fill me-1" data-mdb-ripple-color="dark">
+                      Show
+                    </button>
+                    <button type="button" class="btn btn-dark flex-fill ms-1">Edit</button>
+                    <button type="button" class="btn btn-danger flex-fill ms-1">Delete</button>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </section>
+
+      <!-- <div class="container">
+        <div class="row">
+          <div class="col-sm">
+            One of three columns
+          </div>
+          <div class="col-sm">
+            One of three columns
+          </div>
+          <div class="col-sm">
+            One of three columns
+          </div>
+        </div>
+      </div> -->
+      <section style="background-color: #eee;">
+        <div class="container py-5">
+          <div class="row">
+            <div class="col-md-12 col-lg-4 mb-4 mb-lg-0">
+              <div class="card text-black">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-product-cards/img1.webp"
+                  class="card-img-top" alt="iPhone" />
+                <div class="card-body">
+                  <div class="text-center mt-1">
+                    <h4 class="card-title">iPhone X</h4>
+                    <h6 class="text-primary mb-1 pb-3">Starting at $399</h6>
+                  </div>
+      
+                  <div class="text-center">
+                    <div class="p-3 mx-n3 mb-4" style="background-color: #eff1f2;">
+                      <h5 class="mb-0">Quick Look</h5>
+                    </div>
+      
+                    <div class="d-flex flex-column mb-4">
+                      <span class="h1 mb-0">5.8″</span>
+                      <span>Super Retina HD display1</span>
+                    </div>
+      
+                    <div class="d-flex flex-column mb-4">
+                      <span class="h1 mb-0">
+                        <i class="fas fa-camera-retro"></i>
+                      </span>
+                      <ul class="list-unstyled mb-0">
+                        <li aria-hidden="true">—</li>
+                        <li>Wide</li>
+                        <li>Telephoto</li>
+                        <li aria-hidden="true">—</li>
+                      </ul>
+                    </div>
+      
+                    <div class="d-flex flex-column mb-4">
+                      <span class="h1 mb-0">2x</span>
+                      <span>Optical zoom range</span>
+                    </div>
+      
+                    <div class="p-3 mx-n3 mb-4" style="background-color: #eff1f2;">
+                      <h5 class="mb-0">Capacity</h5>
+                    </div>
+      
+                    <div class="d-flex flex-column mb-4 lead">
+                      <span class="mb-2">64GB</span>
+                      <span class="mb-2">256GB</span>
+                      <span style="color: transparent;">0</span>
+                    </div>
+                  </div>
+      
+                  <div class="d-flex flex-row">
+                    <button type="button" class="btn btn-primary flex-fill me-1" data-mdb-ripple-color="dark">
+                      Learn more
+                    </button>
+                    <button type="button" class="btn btn-danger flex-fill ms-1">Buy now</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4 mb-md-0">
+              <div class="card text-black">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-product-cards/img2.webp"
+                  class="card-img-top" alt="iPhone" />
+                <div class="card-body">
+                  <div class="text-center mt-1">
+                    <h4 class="card-title">iPhone 11</h4>
+                    <h6 class="text-primary mb-1 pb-3">Starting at $499</h6>
+                  </div>
+      
+                  <div class="text-center">
+                    <div class="p-3 mx-n3 mb-4" style="background-color: #eff1f2;">
+                      <h5 class="mb-0">Quick Look</h5>
+                    </div>
+      
+                    <div class="d-flex flex-column mb-4">
+                      <span class="h1 mb-0">6.1″</span>
+                      <span>Liquid Retina HD display1</span>
+                    </div>
+      
+                    <div class="d-flex flex-column mb-4">
+                      <span class="h1 mb-0">
+                        <i class="fas fa-camera-retro"></i>
+                      </span>
+                      <ul class="list-unstyled mb-0">
+                        <li aria-hidden="true">Ultra Wide</li>
+                        <li>Wide</li>
+                        <li aria-hidden="true">—</li>
+                        <li aria-hidden="true">—</li>
+                      </ul>
+                    </div>
+      
+                    <div class="d-flex flex-column mb-4">
+                      <span class="h1 mb-0">2x</span>
+                      <span>Optical zoom range</span>
+                    </div>
+      
+                    <div class="p-3 mx-n3 mb-4" style="background-color: #eff1f2;">
+                      <h5 class="mb-0">Capacity</h5>
+                    </div>
+      
+                    <div class="d-flex flex-column mb-4 lead">
+                      <span class="mb-2">64GB</span>
+                      <span class="mb-2">128GB</span>
+                      <span>256GB</span>
+                    </div>
+                  </div>
+      
+                  <div class="d-flex flex-row">
+                    <button type="button" class="btn btn-primary flex-fill me-1" data-mdb-ripple-color="dark">
+                      Learn more
+                    </button>
+                    <button type="button" class="btn btn-danger flex-fill ms-1">Buy now</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4 mb-md-0">
+              <div class="card text-black">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-product-cards/img3.webp"
+                  class="card-img-top" alt="iPhone" />
+                <div class="card-body">
+                  <div class="text-center mt-1">
+                    <h4 class="card-title">iPhone 11 Pro</h4>
+                    <h6 class="text-primary mb-1 pb-3">Starting at $599</h6>
+                  </div>
+      
+                  <div class="text-center">
+                    <div class="p-3 mx-n3 mb-4" style="background-color: #eff1f2;">
+                      <h5 class="mb-0">Quick Look</h5>
+                    </div>
+      
+                    <div class="d-flex flex-column mb-4">
+                      <span class="h1 mb-0">5.8″</span>
+                      <span>Super Retina HD display1</span>
+                    </div>
+      
+                    <div class="d-flex flex-column mb-4">
+                      <span class="h1 mb-0">
+                        <i class="fas fa-camera-retro"></i>
+                      </span>
+                      <ul class="list-unstyled mb-0">
+                        <li aria-hidden="true">Ultra Wide</li>
+                        <li>Wide</li>
+                        <li>Telephoto</li>
+                        <li aria-hidden="true">—</li>
+                      </ul>
+                    </div>
+      
+                    <div class="d-flex flex-column mb-4">
+                      <span class="h1 mb-0">4x</span>
+                      <span>Optical zoom range</span>
+                    </div>
+      
+                    <div class="p-3 mx-n3 mb-4" style="background-color: #eff1f2;">
+                      <h5 class="mb-0">Capacity</h5>
+                    </div>
+      
+                    <div class="d-flex flex-column mb-4 lead">
+                      <span class="mb-2">64GB</span>
+                      <span class="mb-2">256GB</span>
+                      <span>512GB</span>
+                    </div>
+                  </div>
+      
+                  <div class="d-flex flex-row">
+                    <button type="button" class="btn btn-primary flex-fill me-1" data-mdb-ripple-color="dark">
+                      Learn more
+                    </button>
+                    <button type="button" class="btn btn-danger flex-fill ms-1">Buy now</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 </body>
 </html>
