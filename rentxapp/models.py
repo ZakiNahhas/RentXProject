@@ -50,6 +50,7 @@ class Product(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
     offered_by= models.ForeignKey(User, related_name="products_offered", on_delete = models.CASCADE)
+    liked_by = models.ManyToManyField(User, related_name="liked_products")
     product_image=models.ImageField(upload_to='images',blank=True,null=True)
     price = models.IntegerField()
     location = models.CharField(max_length=255)
@@ -59,9 +60,9 @@ class Product(models.Model):
     objects = ProductManager() 
 
 class Rental(models.Model):
-    renter= models.ForeignKey(User, related_name="provider", on_delete = models.CASCADE)
-    rentee= models.ForeignKey(User, related_name="taker", on_delete = models.CASCADE)
-    rented_product= models.OneToOneField(Product, on_delete = models.CASCADE)
+    renter= models.ForeignKey(User, related_name="provided_rentals", on_delete = models.CASCADE)
+    rentee= models.ForeignKey(User, related_name="taken_rentals", on_delete = models.CASCADE)
+    rented_product= models.ForeignKey(Product, related_name="inrenting",on_delete = models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     status= models.IntegerField(default=0)

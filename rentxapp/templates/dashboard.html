@@ -80,10 +80,16 @@
               rel="nofollow" target="_blank">Start Now</a> -->
             
           </div>
+          <form action="/searching" method="post"  >
+            {% csrf_token %}
           <div class="input-group mt-5">
-            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+            <input type="search" class="form-control rounded" placeholder="Search for products" value="" name = "search" aria-label="Search" aria-describedby="search-addon" />
             <span class="input-group-text border-0" id="search-addon">
               <i class="fas fa-search"></i>
+              <button>Search</button>
+              </span>
+              </div>
+              </form>
             </span>
           </div>
         </div>
@@ -147,7 +153,7 @@
                 <p class="card-text">
                   Your Toaster exploaded, and you really need to rent one? This is the right place for you!
                 </p>
-                <a href="#!" class="btn btn-primary">View</a>
+                <a href="/electcat" class="btn btn-primary">View</a>
               </div>
             </div>
           </div>
@@ -165,7 +171,7 @@
                 <p class="card-text">
                   Did you break your chair? Check out other almost-non-broken charis for rent!
                 </p>
-                <a href="#!" class="btn btn-primary">View</a>
+                <a href="/officecat" class="btn btn-primary">View</a>
               </div>
             </div>
           </div>
@@ -183,7 +189,7 @@
                 <p class="card-text">
                   Got a surprise visitor and don't know what to do? Matresses and other helpful stuff are here!
                 </p>
-                <a href="#!" class="btn btn-primary">View</a>
+                <a href="/homecat" class="btn btn-primary">View</a>
               </div>
             </div>
           </div>

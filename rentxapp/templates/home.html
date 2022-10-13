@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <h1>Available products</h1>
+    <h2>Category: office</h2>
+    {%for product in office.products.all%}
+    <p>{{product}}</p>
+    
+    <div  style="width:200px; height:300px; border:1px solid black; padding:10px; margin: 0 auto; margin-top:20px; background-color: rgb(139, 242, 208); " >
+        <h1>Product ID {{product.id}}</h1> 
+        <p>Product Name: {{product.name}}</p>
+        <p>Price: {{product.price}}</p>
+        <p>Description: {{product.description}}</p>
+        <div><img src="{{ product.product_image.url }}" style="width:100px; height:auto"></div>
+        </div>
+       
+        {%endfor%} -->
+
+        <h1>Available products</h1>
+    <h2>Category: Homewares</h2>
+    {%for product in products%}
+    {%if product.category.name == "homewares"%}
+    {%if product.inrenting.status != 0%}
+    
+     
+<div  style="width:200px; height:300px; border:1px solid black; padding:10px; margin: 0 auto; margin-top:20px; background-color: rgb(139, 242, 208); " >
+        <h1>Product ID {{product.id}}</h1> 
+        <p>Product Name: {{product.name}}</p>
+        <p>Price: {{product.price}}</p>
+        <p>Description: {{product.description}}</p>
+        <p>Description: {{product.category.name}}</p>
+        <div><img src="{{ product.product_image.url }}" style="width:100px; height:auto"></div>
+        </div>
+        {%endif%}
+        {%endif%}
+    {%endfor%} 
+       
+       
+       
+</body>
+</html>

@@ -100,12 +100,13 @@
                   <!-- <label class="form-label" for="form3Example1cg">Your Name</label> -->
                 </div>
 
-                <div class="form-outline mb-4">
-                <select class="form-select" name="selectcategory" aria-label="Default select example">
-                  <option selected disabled>Choose an appropraite Category</option>
-                  <option value="1">Electronics</option>
-                  <option value="2">Office</option>
-                  <option value="3">Homeware</option>
+                <div><P>Select</P><select class="form-select" aria-label="Default select example" name="selectcategory">
+            
+                  {%for cat in categories%}
+                  
+                  <option value="{{cat.id}}" >{{cat.name}}</option>
+                 
+                  {%endfor%}
                 </select>
               </div>
 

@@ -18,6 +18,7 @@
             <ol class="breadcrumb mb-0">
               <li class="breadcrumb-item"><a  style="text-decoration: none; color: white;" href="/dashboard">Dashboard</a></li>
               <li class="breadcrumb-item"><a  style="text-decoration: none; color: white;" href="/logout">Log Out</a></li>
+              <li class="breadcrumb-item"><a  style="text-decoration: none; color: white;" href="/show">for testing</a></li>
               <li class="breadcrumb-item active" aria-current="page">Welcome {{request.session.firstname}}!</li>
             </ol>
           </nav>
@@ -73,7 +74,7 @@
             <div class="col-md-6">
               <div class="card mb-4 mb-md-0">
                 <div class="card-body">
-                  <p class="mb-4">My <span class="text-danger font-italic me-1">Rented</span>Products
+                  <p class="mb-4">Products you Offerd for <span class="text-danger font-italic me-1">rental</span>
                   </p>
 
                   {%for product in user.products_offered.all%}
@@ -136,10 +137,30 @@
               </div>
             </div>
             <div class="col-md-6">
-              <div class="card mb-4 mb-md-0">
+              <div class="card mb-6 mb-md-0">
                 <div class="card-body">
-                  <p class="mb-4">Products you Offerd for <span class="text-danger font-italic me-1">Rental</span>
+                  <p class="mb-4">My rented <span class="text-danger font-italic me-1">products</span>
                   </p>
+                  <h2>My orders</h2>
+   
+    {%for order in user.taken_rentals.all%}
+    {%if order.status == 0%}
+
+  
+   <p>renter first name:  {{order.renter.firstname}}</p>
+   <p>rentee first name:  {{order.rentee.firstname}}</p>
+   <p>rented product:  {{order.rented_product.name}}</p><a href="/show/{{order.rented_product.id}}">view</a>
+   <p>order id: {{order.id}}</p>
+   <a href="/unrent/{{order.id}}">unrent</a>
+   {%endif%}
+   {%endfor%}
+
+   <h2>My wishlist</h2>
+   {% for product in user.liked_products.all%}
+   <a href="/show/{{product.id}}">{{product.name}}</a>
+   
+   {%endfor%}
+   
                   <!-- <p class="mb-1" style="font-size: .77rem;">Web Design</p>
                   <div class="progress rounded" style="height: 5px;">
                     <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80"
@@ -227,6 +248,7 @@
       
       <section style="background-color: #eee;">
         {%for product in user.products_offered.all%}
+        {%if product.inrenting.status != 0%}
         <div class="container py-5">
           <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6 col-xl-4">
@@ -261,6 +283,7 @@
             </div>
           </div>
         </div>
+        {% endif %}
         {% endfor %}
       </section>
 

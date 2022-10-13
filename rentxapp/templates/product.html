@@ -21,31 +21,30 @@
       <a class="ancor" href="/logout">Log Out</a>
       </div>
   </div>
-<div class="wrapper">
-  <div class="product-img">
-    <img src="http://bit.ly/2tMBBTd" height="420" width="327">
+  <div  style="width:500px; height:600px; border:1px solid black; padding:10px; margin: 0 auto; margin-top:20px; background-color: rgb(139, 242, 208); " >
+    <h1>Product ID {{oneproduct.id}}</h1> 
+    <p>Product Name: {{oneproduct.name}}</p>
+    <p>Price: {{oneproduct.price}}</p>
+    <p>Description: {{oneproduct.description}}</p>
+    <p>rental status: {{oneproduct.inrenting.status}}</p>
+    <div><img src="{{ oneproduct.product_image.url }}" style="width:100px; height:auto"></div>
+   
+ 
+   <div style="margin-top:10px"  ><a href="/show" >Go back</a></div>
+   <div><a href="/liking/{{oneproduct.id}}">Like me!</a></div>
+   <div><a href="/unliking/{{oneproduct.id}}">dislike me!</a></div>
+     <p>{{oneproduct.liked_by.count}}  likes</p>
+ 
+   <div>
+     
+     <form action="/renting/{{oneproduct.id}}" method="post">
+       {% csrf_token %}
+        
+      <button>Rent</button>
+     </form>
+     
   </div>
-  <div class="product-info">
-    <div class="product-text">
-      <h1>{{oneproduct.name}}</h1>
-      <br>
-      <h2>Offered by: {{oneproduct.offered_by.firstname}} {{oneproduct.offered_by.lastname}} <hr style="margin-right: 29px;"> Location: {{oneproduct.location}}</h2>
-      <h2></h2>
-      <p>Product description: <br>{{oneproduct.description}}</p>
-    </div>
-    <p class="textp">Price: {{oneproduct.price}}</p>
-    <div  style="width:500px; height:600px; border:1px solid black; padding:10px; margin: 0 auto; margin-top:20px; background-color: rgb(139, 242, 208); " >
-      <h1>Product ID {{oneproduct.id}}</h1> 
-      <p>Product Name: {{oneproduct.name}}</p>
-      <p>Price: {{oneproduct.price}}</p>
-      <p>Description: {{oneproduct.description}}</p>
-      <div><img src="{{ oneproduct.product_image.url }}" style="width:100px; height:auto"></div>
-    <form action="/renting/{{oneproduct.id}}" method="post">
-      {% csrf_token %}
-   <input class="btn3" type="submit" value="Rent">
-  </form>
-  </div>
-  
+ 
 </div>
 
 </body>

@@ -22,4 +22,15 @@ urlpatterns = [
     path('adminz/create', views.admincreate),
     path('adminz/dash', views.admindash),
     path("category/delete/<int:id>", views.delete_category),
+    path('searching', views.searching),
+    path('filtering', views.filtering),
+    path('officecat', views.officecat),
+    path('electcat', views.electcat),
+    path('homecat', views.homecat),
+    path('liking/<int:id>', views.addtowish),
+    path('unliking/<int:id>', views.unwish),
+    path('renting/<int:id>', views.renting),
+    path('rentdone/<int:id>', views.rentdone),
+    path("unrent/<int:id>", views.unrent),
+    
 ]

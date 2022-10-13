@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib import messages
+from django.db.models import Count
 from .models import *
 import bcrypt
 
@@ -72,6 +73,38 @@ def success_page(request):
     }
     return render(request, "dashboard.html", context)
 
+
+
+def searching(request):
+    request.session['search'] =request.POST['search']
+    search_in= request.session['search']
+    context={
+        'products':Product.objects.filter(name__contains=search_in).all()
+    }
+   
+    return render(request, 'out.html', context)
+
+
+
+def filtering(request):
+    if request.POST['filterproducts']=='free':
+        context={
+           
+            'freeproducts':Product.objects.filter(name__contains=request.session['search'],price=0).all()
+        }
+
+    if request.POST['filterproducts']=='low':
+        context={
+            'lowproducts':Product.objects.filter(name__contains=request.session['search']).order_by("price")
+        }
+
+    if request.POST['filterproducts']=='like':
+        context={
+            'likeproducts':Product.objects.filter(name__contains=request.session['search']).annotate(like_count=Count('liked_by')).order_by('-liked_by')
+        }
+    return render(request, 'free.html',context)
+
+
 def my_profile(request):
     context={
         'user': User.objects.get(id=request.session['userid'])
@@ -88,6 +121,23 @@ def add_a_product(request):
     }
     
     return render(request, 'add_a_product.html',context)
+
+
+def create(request):
+     errors = Product.objects.basic_validator(request.POST)
+     if len(errors) > 0:
+        for key, value in errors.items():
+            messages.error(request, value)
+            return redirect('/add_a_product')
+     else:
+        userx= User.objects.get(id=request.session['userid'])
+        category= Category.objects.get(id=request.POST['selectcategory'])
+        pimage=request.FILES['proimage']
+        
+        Product.objects.create(name=request.POST['name'], offered_by=userx, description=request.POST['desc'],  price=request.POST['price'],location=request.POST['location'], category=category,product_image=pimage)
+        
+
+        return redirect('/my_profile')
 
 def delete_product(request,id):
     deleted_product= Product.objects.get(id=int(id))
@@ -135,6 +185,99 @@ def updateproduct(request,id):
         
         return redirect("/my_profile")
 
+def officecat(request):
+    
+    context={
+        # 'office': Category.objects.filter(name="office")
+        # 'cats': Category.objects.all()
+        'products': Product.objects.all()
+
+    }
+    return render(request, 'office.html', context)
+
+def electcat(request):
+    
+    context={
+        # 'office': Category.objects.filter(name="office")
+        # 'cats': Category.objects.all()
+        'products': Product.objects.all()
+
+    }
+    return render(request, 'elect.html', context)
+
+def homecat(request):
+    
+    context={
+        # 'office': Category.objects.filter(name="office")
+        # 'cats': Category.objects.all()
+        'products': Product.objects.all()
+
+    }
+    return render(request, 'home.html', context)
+
+def addtowish(request,id):
+    userliking= User.objects.get(id=request.session['userid'])
+    likedproduct=Product.objects.get(id=int(id))
+    likedproduct.liked_by.add(userliking)
+    likedproduct.save()
+    return redirect('/show/'+str(id))
+
+def unwish(request,id):
+    userunlike= User.objects.get(id=request.session['userid'])
+    unlikedproduct=Product.objects.get(id=int(id))
+    unlikedproduct.liked_by.remove(userunlike)
+    unlikedproduct.save()
+    return redirect('/show/'+str(id))
+
+
+def renting(request,id):
+    product_x= Product.objects.get(id=int(id))
+    userof= product_x.offered_by.id
+    renter= User.objects.get(id=userof)
+    rentee=  User.objects.get(id=request.session['userid'])
+    Rental.objects.create(renter=renter,rentee=rentee,rented_product=product_x, status=0)
+    return redirect('/rentdone/'+str(id))
+
+def rentdone(request,id):
+    
+
+    context={
+        'rentedproduct':Product.objects.get(id=int(id)),
+        'ordertaker': User.objects.get(id=request.session['userid']),
+        'rents': Rental.objects.all()
+    }
+    return render(request, 'form.html', context)
+
+def unrent(request,id):
+    order_x= Rental.objects.get(id=int(id))
+    order_x.status=1
+    order_x.save()
+    return redirect("/my_profile")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 def adminform(request):
     
     return render(request, 'adminform.html')
@@ -179,21 +322,7 @@ def offer(request):
     return render(request, 'newitem.html',context)
 
 
-def create(request):
-     errors = Product.objects.basic_validator(request.POST)
-     if len(errors) > 0:
-        for key, value in errors.items():
-            messages.error(request, value)
-            return redirect('/add_a_product')
-     else:
-        userx= User.objects.get(id=request.session['userid'])
-        category= Category.objects.get(id=request.POST['selectcategory'])
-        Pimage=request.FILES['proimage']
-        
-        Product.objects.create(name=request.POST['name'], offered_by=userx, description=request.POST['desc'],  price=request.POST['price'],location=request.POST['location'], category=category,product_image=Pimage)
-        
 
-        return redirect('/my_profile')
 
 
 def show(request):
