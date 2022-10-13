@@ -50,7 +50,7 @@ class Product(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
     offered_by= models.ForeignKey(User, related_name="products_offered", on_delete = models.CASCADE)
-    #product_image=models.ImageField(upload_to='images/', default=None)
+    product_image=models.ImageField(upload_to='images',blank=True,null=True)
     price = models.IntegerField()
     location = models.CharField(max_length=255)
     category=  models.ForeignKey(Category, related_name="products", on_delete = models.CASCADE,null=True )

@@ -33,7 +33,13 @@
       <h2></h2>
       <p>Product description: <br>{{oneproduct.description}}</p>
     </div>
-    <p class="textp">Price: ₪{{oneproduct.price}}</p>
+    <p class="textp">Price: {{oneproduct.price}}</p>
+    <div  style="width:500px; height:600px; border:1px solid black; padding:10px; margin: 0 auto; margin-top:20px; background-color: rgb(139, 242, 208); " >
+      <h1>Product ID {{oneproduct.id}}</h1> 
+      <p>Product Name: {{oneproduct.name}}</p>
+      <p>Price: {{oneproduct.price}}</p>
+      <p>Description: {{oneproduct.description}}</p>
+      <div><img src="{{ oneproduct.product_image.url }}" style="width:100px; height:auto"></div>
     <form action="/renting/{{oneproduct.id}}" method="post">
       {% csrf_token %}
    <input class="btn3" type="submit" value="Rent">

@@ -18,6 +18,7 @@ urlpatterns = [
     path('add_a_product', views.add_a_product),
     path('create', views.create),
     # path('show', views.show),
+    path("show/<int:id>", views.oneproduct),
     path('delete/<int:id>', views.delete_product),
     # path('edit/<int:id>', views.editproduct),
     # path('update/<int:id>', views.updateproduct),

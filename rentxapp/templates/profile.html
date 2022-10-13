@@ -122,7 +122,8 @@
 
                   {%for product in user.products_offered.all%}
                     <div>
-                      <a href="/show/{{product.id}}">{{product.name}}</a>
+                      <a href="/show/{{product.id}}">View</a>
+                      <p>{{product.name}}</p>
                       <div class="d-flex justify-content-around">
                       <div class="d-flex justify-content-center">
                         <button type="submit"

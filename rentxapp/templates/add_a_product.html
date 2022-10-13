@@ -78,7 +78,7 @@
             <div class="card-body p-5">
               <h2 class="text-uppercase text-center mb-5">Add a P<span class="text-danger">r</span>oduct</h2>
 
-              <form method="post" action="/create">
+              <form method="post" action="/create" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="form-outline mb-4">
                   <input type="text" id="form3Example1cg" name="name" class="form-control form-control-lg" placeholder="Product Name"/>
@@ -111,7 +111,7 @@
 
               <div class="form-outline mb-4">
                 <label class="form-label" for="customFile">Product Image</label>
-                <input type="file" class="form-control" id="customFile" name="image" accept="image/*" />
+                <input type="file" class="form-control" id="customFile" name="proimage" accept="image/*" />
                 <!-- <input type="file" name="image" accept="image/*"> -->
                 <!-- <input type="submit" value="submit"> -->
               </div>

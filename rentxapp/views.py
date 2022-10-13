@@ -97,6 +97,12 @@ def delete_product(request,id):
     
     return redirect('/my_profile')
 
+def oneproduct(request,id):
+    context={
+        'oneproduct': Product.objects.get(id=int(id))
+    }
+    return render(request, 'product.html', context)
+
 # def editproduct(request,id):
 #     context={
 #         "oneproduct" : Product.objects.get(id=id),
@@ -214,8 +220,9 @@ def create(request):
      else:
         userx= User.objects.get(id=request.session['userid'])
         category_x= Category.objects.get(id=request.POST['selectcategory'])
+        Pimage=request.FILES['proimage']
         
-        Product.objects.create(name=request.POST['name'], offered_by=userx, description=request.POST['desc'],  price=request.POST['price'],location=request.POST['location'], category=category_x)
+        Product.objects.create(name=request.POST['name'], offered_by=userx, description=request.POST['desc'],  price=request.POST['price'],location=request.POST['location'], category=category_x,product_image=Pimage)
         
 
         return redirect('/my_profile')
