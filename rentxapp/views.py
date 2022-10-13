@@ -60,7 +60,6 @@ def login(request):
 
 def logout(request):
     request.session.clear()
-    # request.session.pop("user_id")
     return redirect('/')
 
 def success_page(request):
@@ -103,69 +102,38 @@ def oneproduct(request,id):
     }
     return render(request, 'product.html', context)
 
-# def editproduct(request,id):
-#     context={
-#         "oneproduct" : Product.objects.get(id=id),
-#         'cats': Category.objects.all
+def editproduct(request,id):
+    context={
+        "oneproduct" : Product.objects.get(id=id),
+        'categories': Category.objects.all
 
-#     }
+    }
     
-#     return render(request, 'edit.html', context)
+    return render(request, 'edit.html', context)
 
 
 
-# def updateproduct(request,id):
+def updateproduct(request,id):
     
-#     errors = Product.objects.basic_validator(request.POST)
-#     if len(errors) > 0:
-#         for key, value in errors.items():
-#             messages.error(request, value)
-#         return redirect('/edit/'+str(id))
-#     else:
+    errors = Product.objects.basic_validator(request.POST)
+    if len(errors) > 0:
+        for key, value in errors.items():
+            messages.error(request, value)
+        return redirect('/edit/'+str(id))
+    else:
 
-#         productinstance = Product.objects.get(id=id)
+        productinstance = Product.objects.get(id=id)
         
-#         productinstance.name=request.POST["name"]
-#         productinstance.price=request.POST["price"]
-#         productinstance.location=request.POST["location"]
-#         productinstance.description=request.POST["desc"]
-#         category_z= Category.objects.get(id=request.POST['selectcategory'])
-#         productinstance.category=category_z
-#         productinstance.save()
+        productinstance.name=request.POST["name"]
+        productinstance.price=request.POST["price"]
+        productinstance.location=request.POST["location"]
+        productinstance.description=request.POST["desc"]
+        category= Category.objects.get(id=request.POST['selectcategory'])
+        productinstance.category=category
+        productinstance.save()
            
         
-#         return redirect("/my_profile")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        return redirect("/my_profile")
 
 def adminform(request):
     
@@ -181,15 +149,15 @@ def admincreate(request):
 
 def admindash(request):
     context={
-        'cats': Category.objects.all
+        'categories': Category.objects.all
     }
     
     return render(request, 'admindash.html',context)
 
 
-def delcat(request,id):
-    deleted_cat= Category.objects.get(id=int(id))
-    deleted_cat.delete()
+def delete_category(request,id):
+    deleted_category= Category.objects.get(id=int(id))
+    deleted_category.delete()
 
     
     return redirect("/adminz/dash")
@@ -219,10 +187,10 @@ def create(request):
             return redirect('/add_a_product')
      else:
         userx= User.objects.get(id=request.session['userid'])
-        category_x= Category.objects.get(id=request.POST['selectcategory'])
+        category= Category.objects.get(id=request.POST['selectcategory'])
         Pimage=request.FILES['proimage']
         
-        Product.objects.create(name=request.POST['name'], offered_by=userx, description=request.POST['desc'],  price=request.POST['price'],location=request.POST['location'], category=category_x,product_image=Pimage)
+        Product.objects.create(name=request.POST['name'], offered_by=userx, description=request.POST['desc'],  price=request.POST['price'],location=request.POST['location'], category=category,product_image=Pimage)
         
 
         return redirect('/my_profile')

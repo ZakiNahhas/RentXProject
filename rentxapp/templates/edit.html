@@ -55,10 +55,9 @@
     
               <div>
                 <P>Select</P><select class="form-select" aria-label="Default select example"  name="selectcategory">
+                {%for category in categories%}
                 
-                {%for cat in cats%}
-                
-                <option value="{{cat.id}}" >{{cat.name}}</option>
+                <option value="{{category.id}}" >{{category.name}}</option>
                
                 {%endfor%}
               </select>
