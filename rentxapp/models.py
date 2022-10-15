@@ -54,16 +54,16 @@ class Product(models.Model):
     product_image=models.ImageField(upload_to='images',blank=True,null=True)
     price = models.IntegerField()
     location = models.CharField(max_length=255)
-    category=  models.ForeignKey(Category, related_name="products", on_delete = models.CASCADE,null=True )
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    objects = ProductManager() 
-
-class Rental(models.Model):
-    renter= models.ForeignKey(User, related_name="provided_rentals", on_delete = models.CASCADE)
-    rentee= models.ForeignKey(User, related_name="taken_rentals", on_delete = models.CASCADE)
-    rented_product= models.ForeignKey(Product, related_name="inrenting",on_delete = models.CASCADE)
+    category=  models.ForeignKey(Category, related_name="products", on_delete = models.CASCADE,null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     status= models.IntegerField(default=0)
+    objects = ProductManager() 
+
+class Rental(models.Model):
+    renter= models.ForeignKey(User, related_name="rental_offered", on_delete = models.CASCADE)
+    rentee= models.ManyToManyField(User, related_name="rentals_taken")
+    rented_product= models.ForeignKey(Product, related_name="rentals",on_delete = models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     

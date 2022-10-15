@@ -64,12 +64,12 @@
                     <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
   
                     <div class="form-outline mb-4">
-                      <input type="email" id="form2Example17" name="email" class="form-control form-control-lg" placeholder="Email address"/>
+                      <input type="email" id="form2Example17" name="email" class="form-control form-control-lg" placeholder="Email address" required/>
                     
                     </div>
   
                     <div class="form-outline mb-4">
-                      <input type="password" id="form2Example27" name="password" class="form-control form-control-lg" placeholder="Password" />
+                      <input type="password" id="form2Example27" name="password" class="form-control form-control-lg" placeholder="Password" required/>
                 
                     </div>
   
@@ -92,72 +92,3 @@
       <script src="static/js/script.js"></script>
 </body>
 </html>
-
-
-<!-- <div class="cotn_principal">
-  <div class="cont_centrar">
-        {% if messages %}
-        <ul class="messages">    
-        {% for message in messages %}    
-            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
-        {% endfor %}
-        </ul>
-        {% endif %}
-      <div class="cont_login">
-    <div class="cont_info_log_sign_up">
-          <div class="col_md_login">
-    <div class="cont_ba_opcitiy">
-            <h2>LOGIN</h2>  
-      <p>We're happy to see you again! Use this form to Login</p> 
-      <button class="btn_login" onclick="cambiar_login()">LOGIN</button>
-      </div>
-      </div>
-    <div class="col_md_sign_up">
-    <div class="cont_ba_opcitiy">
-      <h2>SIGN UP</h2>
-    
-      
-      <p>Welcome to <span style="color: #4c4e61;">Rent</span><span style="color: #ea5353; font-size:19px;">X</span>! Use this form to sign up</p>
-    
-      <button class="btn_sign_up" onclick="cambiar_sign_up()">SIGN UP</button>
-    </div>
-      </div>
-           </div>
-        <div class="cont_back_info">
-           <div class="cont_img_back_grey">
-           <img src="static\images\sharing.jpg" alt="" />
-           </div>
-           
-        </div>
-    <div class="cont_forms" >
-        <div class="cont_img_back_">
-           <img src="static\images\sharing.jpg" alt="" />
-           </div>
-           <form action="/login" method="post">
-            {% csrf_token %}
-     <div class="cont_form_login">
-    <a href="#" onclick="ocultar_login_sign_up()" class="material-icons">&nabla;</a>
-       <h2>LOGIN</h2>
-     <input type="text" name="email" placeholder="Email" />
-    <input type="password" name="password" placeholder="Password" />
-    <button class="btn_login" onclick="cambiar_login()">LOGIN</button>
-      </div>
-    </form>
-
-      <form action="/register" method="post">
-        {%csrf_token%}
-       <div class="cont_form_sign_up">
-    <a href="#" onclick="ocultar_login_sign_up()" class="material-icons">&nabla;</a>
-    
-         <h2>SIGN UP</h2>
-    <input type="text" name="firstname" placeholder="First Name" />
-    <input type="text" name="lastname" placeholder="Last Name" />
-    <input type="text" name="email" placeholder="Email" />
-    <input type="password" name="password" placeholder="Password" />
-    <input type="password" name="password_confirm" placeholder="Confirm Password" />
-    <button class="btn_sign_up" onclick="cambiar_sign_up()">SIGN UP</button>
-    </form>
-      </div>
-        </div>
-      </div>
-     </div> -->

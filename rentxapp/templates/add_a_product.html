@@ -41,8 +41,6 @@
       </div>
     </nav>
 
-
-
   <section class="mt-4">
   <div class="mask d-flex align-items-center h-100 gradient-custom-3">
     <div class="container h-100">
@@ -104,73 +102,12 @@
     </div>
   </div>
 </section>
-
-
-
-
-<!-- 
-    <div class="flex2">
-        <p class="text">Rent<span style="color: #ea5353; font-size:50px;">X</span></p>
-        <div class="flex">
-        <a class="ancor" href="/my_profile">My Profile</a>
-        Welcome {{request.session.firstname}}!
-        <a class="ancor" href="/logout">Log Out</a>
-        </div>
-        </div>
-        <form method="post"  action="/create" >
-            {% csrf_token %}
-            <div class="form-group">
-    
-              <label for="formGroupExampleInput">name</label>
-              <input type="text" class="form-control" id="formGroupExampleInput" name="name">
-              </div>
-    
-              <div class="form-row">
-                <div class="col">
-                    <label for="formGroupExampleInput">description</label>
-                  <input type="text" class="form-control" name="desc">
-                </div>
-    
-                
-    
-    
-                <div class="col">
-                <label for="formGroupExampleInput">price</label>
-                  <input type="number" class="form-control" name="price">
-                </div>
-              </div>
-    
-              <div class="form-group">
-                <label for="exampleFormControlTextarea1">location</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="location" ></textarea>
-              </div>
-    
-    
-             
-    
-    
-              <div><P>Select</P><select class="form-select" aria-label="Default select example" name="selectcategory">
-                
-                {%for cat in cats%}
-                
-                <option value="{{cat.id}}" >{{cat.name}}</option>
-               
-                {%endfor%}
-              </select>
-            </div>
-    
-    
-              <button style="margin-top: 70px" type="submit" class="btn btn-primary">Create!</button>
-            
-        </form>
-
-        {% if messages %}
-        <ul class="messages">    
-            {% for message in messages %}    
-                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
-            {% endfor %}
-        </ul>
-        {% endif %} -->
+{% if messages %}
+    <ul class="messages">    
+        {% for message in messages %}    
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+        {% endfor %}
+    </ul>
+    {% endif %}
 </body>
-
 </html>

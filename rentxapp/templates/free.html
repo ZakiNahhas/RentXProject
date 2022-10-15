@@ -60,7 +60,7 @@
   <div style="margin-top: 6%;"></div>
   {%for product in lowproducts%}
    
-  {%if product.inrenting.status != 0%}
+  {%if product.status == 0 %}
     <section>
         <div class="container mt-3">
             <div class="row justify-content-center mb-3">
@@ -110,25 +110,14 @@
                                     </div>
                                   
 
-                                    <h6 class="text-success">Free shipping</h6>
+                                    <h6 class="text-success mt-5">Free shipping</h6>
                                     <div class="d-flex flex-column mt-4">
-                                        <button type="button" class="btn btn-outline-dark btn-sm mt-2 border-0">
-                                            <form action="/renting/{{oneproduct.id}}" method="post">
-                                                {% csrf_token %}
-                                                <button type="submit" class="btn  btn-dark btn-sm mt-2">Rent<span class="text-danger">X</span></button>
-                                            </form>
-                                        </button>
+                                
 
-                                        <button type="button" class="btn btn-outline-dark btn-sm mt-2"><a class="text-danger"
-                                                style="text-decoration: none;"
-                                                href="/liking/{{oneproduct.id}}">Add to wishlist</a></button>
-                                        <button type="button" class="btn btn-outline-dark btn-sm mt-2"><a class="text-danger"
-                                                style="text-decoration: none;"
-                                                href="/unliking/{{oneproduct.id}}">Remove frome wishlist</a></button>
-
-                                        <button type="button" class="btn btn-danger btn-sm mt-2"><a
-                                                style="text-decoration: none; color: white;" href="/show">Go
-                                                Back</a></button>
+                                                <div class="d-flex flex-column mt-5">
+                                                    <button type="button" class="btn btn-dark btn-sm mt-2"><a
+                                                            style="text-decoration: none; color: white;" href="/show/{{product.id}}">Check Product</a></button>
+                                                </div>
                                     </div>
                                 </div>
                             </div>
@@ -145,7 +134,7 @@
     <div style="margin-top: 6%;">
     {%for product in likeproducts%}
    
-    {%if product.inrenting.status != 0%}
+    {%if product.status == 0%}
       <section>
           <div class="container mt-3">
               <div class="row justify-content-center mb-3">
@@ -190,31 +179,17 @@
                                   
                                   <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
                                       <div class="d-flex flex-row align-items-center mb-1">
-                                          <h4 class="mb-1 me-1">₪ {{product.price}}</h4>
+                                          <h4 class="mb-1 me-1 text-danger">₪ {{product.price}}</h4>
                                           <!-- <span class="text-danger"><s>$20.99</s></span> -->
                                       </div>
                                     
   
-                                      <h6 class="text-success">Free shipping</h6>
+                                      <h6 class="text-success mt-5">Free shipping</h6>
                                       <div class="d-flex flex-column mt-4">
-                                          <button type="button" class="btn btn-outline-dark btn-sm mt-2 border-0">
-                                              <form action="/renting/{{oneproduct.id}}" method="post">
-                                                  {% csrf_token %}
-                                                  <button type="submit" class="btn  btn-dark btn-sm mt-2">Rent<span class="text-danger">X</span></button>
-                                                  
-                                              </form>
-                                          </button>
-  
-                                          <button type="button" class="btn btn-outline-dark btn-sm mt-2"><a class="text-danger"
-                                                  style="text-decoration: none;"
-                                                  href="/liking/{{oneproduct.id}}">Add to wishlist</a></button>
-                                          <button type="button" class="btn btn-outline-dark btn-sm mt-2"><a class="text-danger"
-                                                  style="text-decoration: none;"
-                                                  href="/unliking/{{oneproduct.id}}">Remove frome wishlist</a></button>
-  
-                                          <button type="button" class="btn btn-danger btn-sm mt-2"><a
-                                                  style="text-decoration: none; color: white;" href="/show">Go
-                                                  Back</a></button>
+                                        <div class="d-flex flex-column mt-5">
+                                            <button type="button" class="btn btn-dark btn-sm mt-2"><a
+                                                    style="text-decoration: none; color: white;" href="/show/{{product.id}}">Check Product</a></button>
+                                        </div>
                                       </div>
                                   </div>
                               </div>
@@ -232,7 +207,7 @@
       <div style="margin-top: 6%;">
       {%for product in freeproducts%}
    
-      {%if product.inrenting.status != 0%}
+      {%if product.status == 0%}
       <section>
           <div class="container mt-3">
               <div class="row justify-content-center mb-3">
@@ -277,30 +252,17 @@
                                   
                                   <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
                                       <div class="d-flex flex-row align-items-center mb-1">
-                                          <h4 class="mb-1 me-1">₪ 0</h4>
+                                          <h4 class="mb-1 me-1 text text-danger">₪ 0</h4>
                                           <!-- <span class="text-danger"><s>$20.99</s></span> -->
                                       </div>
                                     
   
-                                      <h6 class="text-success">Free shipping</h6>
+                                      <h6 class="text-success mt-5">Free shipping</h6>
                                       <div class="d-flex flex-column mt-4">
-                                          <button type="button" class="btn btn-outline-dark btn-sm mt-2 border-0">
-                                              <form action="/renting/{{oneproduct.id}}" method="post">
-                                                  {% csrf_token %}
-                                                  <button type="submit" class="btn  btn-dark btn-sm mt-2">Rent<span class="text-danger">X</span></button>
-                                              </form>
-                                          </button>
-  
-                                          <button type="button" class="btn btn-outline-dark btn-sm mt-2"><a class="text-danger"
-                                                  style="text-decoration: none;"
-                                                  href="/liking/{{oneproduct.id}}">Add to wishlist</a></button>
-                                          <button type="button" class="btn btn-outline-dark btn-sm mt-2"><a class="text-danger"
-                                                  style="text-decoration: none;"
-                                                  href="/unliking/{{oneproduct.id}}">Remove frome wishlist</a></button>
-  
-                                          <button type="button" class="btn btn-danger btn-sm mt-2"><a
-                                                  style="text-decoration: none; color: white;" href="/show">Go
-                                                  Back</a></button>
+                                        <div class="d-flex flex-column mt-5">
+                                            <button type="button" class="btn btn-dark btn-sm mt-2"><a
+                                                    style="text-decoration: none; color: white;" href="/show/{{product.id}}">Check Product</a></button>
+                                        </div>
                                       </div>
                                   </div>
                               </div>
@@ -313,63 +275,5 @@
       {%endif%}
       {%endfor%} 
       </div>
-
-    <h1>Available products</h1>
-    
-    
-    {%for product in freeproducts%}
-   
-    {%if product.inrenting.status != 0%}
-    
-     
-<div  style="width:200px; height:300px; border:1px solid black; padding:10px; margin: 0 auto; margin-top:20px; background-color: rgb(139, 242, 208); " >
-        <h1>Product ID {{product.id}}</h1> 
-        <p>Product Name: {{product.name}}</p>
-        <p>Price: {{product.price}}</p>
-        <p>Description: {{product.description}}</p>
-        <p>Description: {{product.category.name}}</p>
-        <div><img src="{{ product.product_image.url }}" style="width:100px; height:auto"></div>
-        </div>
-        
-        {%endif%}
-    {%endfor%} 
-
-    {%for product in lowproducts%}
-   
-    {%if product.inrenting.status != 0%}
-    
-     
-<div  style="width:200px; height:300px; border:1px solid black; padding:10px; margin: 0 auto; margin-top:20px; background-color: rgb(139, 242, 208); " >
-        <h1>Product ID {{product.id}}</h1> 
-        <p>Product Name: {{product.name}}</p>
-        <p>Price: {{product.price}}</p>
-        <p>Description: {{product.description}}</p>
-        <p>Description: {{product.category.name}}</p>
-        <div><img src="{{ product.product_image.url }}" style="width:100px; height:auto"></div>
-        </div>
-        
-        {%endif%}
-    {%endfor%} 
-
-
-
-    {%for product in likeproducts%}
-   
-    {%if product.inrenting.status != 0%}
-    
-     
-<div  style="width:200px; height:300px; border:1px solid black; padding:10px; margin: 0 auto; margin-top:20px; background-color: rgb(139, 242, 208); " >
-        <h1>Product ID {{product.id}}</h1> 
-        <p>Product Name: {{product.name}}</p>
-        <p>Price: {{product.price}}</p>
-        <p>Description: {{product.description}}</p>
-        <p>Description: {{product.category.name}}</p>
-        <p>Number of likes: {{product.liked_by.count}}</p>
-        <div><img src="{{ product.product_image.url }}" style="width:100px; height:auto"></div>
-        </div>
-        
-        {%endif%}
-    {%endfor%}
-
 </body>
 </html>

@@ -65,7 +65,6 @@
                 class="rounded-circle img-fluid" style="width: 150px;">
               <h5 class="my-3">{{user.firstname}} {{user.lastname}}</h5>
               <p class="text-muted mb-1">{{user.email}}</p>
-              <p class="text-muted mb-4">Mobile number</p>
               <div class="d-flex justify-content-center mb-2">
                 <!-- <button type="button" class="btn btn-primary">Follow</button>
                 <button type="button" class="btn btn-outline-primary ms-1">Message</button> -->
@@ -84,54 +83,21 @@
                   <i class="fa fa-heart text-danger" aria-hidden="true"></i>
                 </li>
                 {%endfor%}
-                <!-- <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                  <i class="fas fa-globe fa-lg text-warning"></i>
-                  <p class="mb-0">https://mdbootstrap.com</p>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                  <i class="fab fa-github fa-lg" style="color: #333333;"></i>
-                  <p class="mb-0">mdbootstrap</p>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                  <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
-                  <p class="mb-0">@mdbootstrap</p>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                  <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
-                  <p class="mb-0">mdbootstrap</p>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                  <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
-                  <p class="mb-0">mdbootstrap</p>
-                </li> -->
               </ul>
             </div>
           </div>
         </div>
         <div class="col-lg-8">
-          <!-- <div class="card mb-4">
-          </div> -->
           <div class="row">
             <div class="col-md-6">
               <div class="card mb-4 mb-md-0">
                 <div class="card-body">
                   <p class="mb-4">Products you Offerd for <span class="text-danger me-1">rental</span>
                   </p>
-
                   {%for product in user.products_offered.all%}
                     <div>
-                      <!-- <div><p>{{product.name}}</p></div> -->
                       <div class="d-flex justify-content-between">
                         <div class="d-flex flex-row mt-4"><h6>{{product.name}}</h6></div>
-                        
-                      <!-- <div class="d-flex justify-content-center">
-                        <button type="submit"
-                          class="btn btn-dark btn-block btn-lg gradient-custom-4"><a href="/delete/{{product.id}}">Delete</a></button>
-                      </div>
-                      <div class="d-flex justify-content-center">
-                        <button type="submit"
-                          class="btn btn-dark btn-block btn-lg gradient-custom-4"><a href="/edit/{{product.id}}">Edit</a></button>
-                      </div> -->
                       <div class="d-flex flex-row mt-3">
                         <button type="button" class="btn btn-dark flex-fill me-1" data-mdb-ripple-color="dark">
                           <a style="text-decoration: none; color: white;" href="/show/{{product.id}}">Show</a>
@@ -140,8 +106,6 @@
                         <button type="button" class="btn btn-danger flex-fill ms-1"><a  style="text-decoration: none; color: white;" href="/delete/{{product.id}}">Delete</a></button>
                       </div>
                     </div>
-                    <!-- <a href="/edit/{{product.id}}">edit</a> -->
-                    <!-- <a href="/delete/{{product.id}}">delete</a> -->
                   </div>
                   {%endfor%}
 
@@ -162,8 +126,8 @@
                     <!-- <div><p>{{product.name}}</p></div> -->
                     
                     <div class="justify-content-between text-center">
-                      {%for order in user.taken_rentals.all%}
-                      {%if order.status == 0%}
+                      {%for order in user.rentals_taken.all%}
+                      {%if order.rented_product.status == 1 %}
                       <div class="mt-5">
                       <p><strong>Renter Name:</strong> {{order.renter.firstname}} {{order.renter.lastname}}</p>
                       <p><strong>Rentee Name:</strong> {{order.rentee.firstname}} {{order.rentee.lastname}}</p>
@@ -171,9 +135,7 @@
                       <p><strong>Order No.</strong> {{order.id}}</p>
                     </div>
                       <div class="d-flex flex-row mt-3">
-                        <button type="button" class="btn btn-dark flex-fill me-1" data-mdb-ripple-color="dark">
-                          <a style="text-decoration: none; color: white;" href="/show/{{order.rented_product.id}}">View</a>
-                        </button>
+                       
                         <button type="button" class="btn btn-danger flex-fill ms-1"><a  style="text-decoration: none; color: white;" href="/unrent/{{order.id}}">Unrent</a></button>
                       </div>
                       {%endif%}

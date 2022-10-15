@@ -30,7 +30,7 @@ urlpatterns = [
     path('liking/<int:id>', views.addtowish),
     path('unliking/<int:id>', views.unwish),
     path('renting/<int:id>', views.renting),
-    path('rentdone/<int:id>', views.rentdone),
+    # path('rentdone/<int:id>', views.rentdone),
     path("unrent/<int:id>", views.unrent),
     
 ]

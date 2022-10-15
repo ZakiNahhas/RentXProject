@@ -86,12 +86,22 @@
     </div>
   </nav>
 
-   
+  <div style="margin-top: 5%; margin-left: 40%;">
+  <form action="/filtering" method="post">
+    {% csrf_token %}
+    <select name="filterproducts" id="filter" class="form-select w-25" aria-label="Default select example">
+        <option value="free">Free products</option>
+        <option value="low">Lowest Price</option>
+        <option value="like">Most liked</option>
+    </select>
+    <button style="margin-left: 7%;" type="submit" class="btn btn-dark btn-sm mt-2">LooK up!</button>
+</form>
+</div>
 
     
-    <div style="margin-top: 6%;">
+    <div style="margin-top: 3%;">
     {%for product in products%}
-    {%if product.inrenting.status != 0%}
+    {%if product.status == 0%}
     <section>
         <div class="container">
             <div class="row justify-content-center mb-3">
@@ -124,11 +134,9 @@
                                         <span></span><span> {{product.category.name}}</span>
                                     </div>
                                     <div class="mt-1 mb-0 text-muted small">
-                                        <span>Like(s)</span><span> {{product.liked_by.count}}</span>
+                                        <span>Wished for</span><span> {{product.liked_by.count}}</span>
                                     </div>
-                                    <div class="mb-2 text-muted small">
-                                        <span>Rental Status</span><span>{{product.inrenting.status}}</span>
-                                    </div>
+                                  
                                     <p class="text-truncate mb-4 mb-md-0">
                                         {{product.description}}
                                     </p>
@@ -136,30 +144,13 @@
                                 
                                 <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
                                     <div class="d-flex flex-row align-items-center mb-1">
-                                        <h4 class="mb-1 me-1">₪ {{product.price}}</h4>
+                                        <h4 class="mb-1 me-1 text-danger">₪ {{product.price}}</h4>
                                         <!-- <span class="text-danger"><s>$20.99</s></span> -->
                                     </div>
-                                  
-
-                                    <h6 class="text-success">Free shipping</h6>
-                                    <div class="d-flex flex-column mt-4">
-                                        <button type="button" class="border-0">
-                                            <form action="/renting/{{oneproduct.id}}" method="post">
-                                                {% csrf_token %}
-                                                <button type="submit" class="btn  btn-dark btn-sm mt-2">Rent<span class="text-danger">X</span></button>
-                                            </form>
-                                        </button>
-
-                                        <button type="button" class="btn btn-outline-dark btn-sm mt-2"><a class="text-danger"
-                                                style="text-decoration: none;"
-                                                href="/liking/{{oneproduct.id}}">Add to wishlist</a></button>
-                                        <button type="button" class="btn btn-outline-dark btn-sm mt-2 text-danger"><a class="text-danger"
-                                                style="text-decoration: none;"
-                                                href="/unliking/{{oneproduct.id}}">Remove frome wishlist</a></button>
-
-                                        <button type="button" class="btn btn-danger btn-sm mt-2"><a
-                                                style="text-decoration: none; color: white;" href="/show">Go
-                                                Back</a></button>
+                                    <h6 class="text-success mt-5">Free shipping</h6>
+                                    <div class="d-flex flex-column mt-5">
+                                        <button type="button" class="btn btn-dark btn-sm mt-2"><a
+                                                style="text-decoration: none; color: white;" href="/show/{{product.id}}">Check Product</a></button>
                                     </div>
                                 </div>
                             </div>
@@ -172,28 +163,6 @@
     {%endif%}
     {%endfor%}
 </div>
-
-    
-    <select class="form-select" aria-label="Default select example">
-        <option selected>Open this select menu</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-      </select>
-
-    <h1>Available products</h1>
-    <form action="/filtering" method="post">
-        {% csrf_token %}
-        <select name="filterproducts" id="filter">
-            <option value="free">Free products</option>
-            <option value="low">Lowest Price</option>
-            <option value="like">Most liked</option>
-        </select>
-        <button>Look up!</button>
-    </form>
-
-
-    
 </body>
 
 </html>
