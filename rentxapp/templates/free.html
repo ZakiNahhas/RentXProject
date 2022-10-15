@@ -21,7 +21,7 @@
 </head>
 <body style="background-color: #eee;">
       <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-none d-lg-block" style="z-index: 2000; background-color: #262626;">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-none d-lg-block fixed-top" style="z-index: 2000;">
     <div class="container-fluid">
       <!-- Navbar brand -->
       <a class="navbar-brand nav-link" href="/dashboard">
@@ -57,6 +57,7 @@
     </div>
   </nav>
 
+  <div style="margin-top: 6%;"></div>
   {%for product in lowproducts%}
    
   {%if product.inrenting.status != 0%}
@@ -139,8 +140,9 @@
     </section>
     {%endif%}
     {%endfor%} 
+    </div>
 
-
+    <div style="margin-top: 6%;">
     {%for product in likeproducts%}
    
     {%if product.inrenting.status != 0%}
@@ -224,10 +226,10 @@
       </section>
       {%endif%}
       {%endfor%} 
+      </div>
 
 
-
-
+      <div style="margin-top: 6%;">
       {%for product in freeproducts%}
    
       {%if product.inrenting.status != 0%}
@@ -310,7 +312,7 @@
       </section>
       {%endif%}
       {%endfor%} 
-
+      </div>
 
     <h1>Available products</h1>
     

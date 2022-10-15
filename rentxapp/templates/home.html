@@ -19,9 +19,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
-<body>
+<body style="background-color: #eee;">
     <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-none d-lg-block" style="z-index: 2000; background-color: #262626;">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-none d-lg-block fixed-top" style="z-index: 2000; background-color: #262626;">
     <div class="container-fluid">
       <!-- Navbar brand -->
       <a class="navbar-brand nav-link" href="/dashboard">
@@ -57,7 +57,7 @@
     </div>
   </nav>
 
-  <section style="background-color: #eee;">
+  <section style="margin-top: 3%;">
 
     <div class="container">
         
@@ -94,10 +94,17 @@
               </div>
   
               <div class="d-flex flex-row">
-                <button type="button" class="btn btn-dark flex-fill me-1" data-mdb-ripple-color="dark">
-                    Rent<span class="text-danger">X</span>
+                <button type="button" class="btn btn-outline-dark btn-sm mt-2 border-0">
+                    <form action="/show/{{pro.id}}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-dark flex-fill me-1" data-mdb-ripple-color="dark">
+                        Rent<span class="text-danger">X</span>
+                    </button>
+                   <!-- <button type="submit" class="btn  btn-dark btn-sm mt-2" >Rent<span class="text-danger">X</span></button> -->
+                  </form>
                 </button>
-                <button type="button" class="btn btn-danger flex-fill ms-1">Add to Wishlist</button>
+                <button type="button" class="btn btn-danger flex-fill ms-1"><a class="text-white"
+                    style="text-decoration: none;" href="/liking/{{pro.id}}">Add to Wishlist</a></button>
               </div>
             </div>
           </div>
