@@ -8,7 +8,7 @@
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=zakinahhas&label=Profile%20views&color=0e75b6&style=flat" alt="zakinahhas" /> </p>
 
 <h3 align="left">Motivation:</h3>
-<p align="left">Almost all of us have been through the hardships of living alone, without our parents. We wanted to help with one of these hardships, by creating RentX!
+<p align="left">Almost all of us have been through the hardships of living alone, without our parents. We wanted to help with one of these hardships, by creating RentX‼️
 </p>
 
 <h3 align="left">Why?</h3>
@@ -16,7 +16,7 @@
 </p>
 
 <h3 align="left">What does it do?</h3>
-<p align="left"> Have you ever wanted to iron your clothes, but then you find out that you forgot to bring your iron from home? RentX will help students rent some products near them that are vital for a cheap price, or even for free!
+<p align="left"> Have you ever wanted to iron your clothes, but then you find out that you forgot to bring your iron from home? RentX will help students rent some products near them that are vital for a cheap price, or even for free‼️
 </p>
 
 <h3 align="left">What did we learn?</h3>
@@ -24,7 +24,7 @@
 </p>
 
 <h3 align="left">Why RentX?</h3>
-<p align="left"> Although there are many social groups on social media platforms that one can use to rent stuff, there was no proper, direct way to do it. The search for the right group in itself was even harder than living alone. That's where Rentx shines, as it is direct to the point, no chating, no need to search for hours, you can just get that specific product you need, that's it!
+<p align="left"> Although there are many social groups on social media platforms that one can use to rent stuff, there was no proper, direct way to do it. The search for the right group in itself was even harder than living alone. That's where Rentx shines, as it is direct to the point, no chating, no need to search for hours, you can just get that specific product you need, that's it‼️
 </p>
 
 <h3 align="left">Features:</h3>
