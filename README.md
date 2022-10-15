@@ -38,9 +38,9 @@
 
 <p><img align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=zakinahhas&show_icons=true&locale=en&layout=compact" alt="zakinahhas" /></p>
 
-## License
-[Zaki](https://github.com/ZakiNahhas)
-[Haneen](https://github.com/Haneen-Saymeh)
-[Ameer](https://github.com/ameerbaghdadi)
-[Khaled](https://github.com/Khaled-Ammar)
+## Authors
+- [Zaki](https://github.com/ZakiNahhas)
+- [Haneen](https://github.com/Haneen-Saymeh)
+- [Ameer](https://github.com/ameerbaghdadi)
+- [Khaled](https://github.com/Khaled-Ammar)
 
