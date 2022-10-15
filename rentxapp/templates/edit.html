@@ -12,8 +12,106 @@
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
 
-<body class="coloring" style="margin: 0 auto; width:800px; height:900px; margin-top:20px "   >
-    <div class="flex2">
+<body class="coloring" style="background-color: #eee;">
+ <!-- Navbar -->
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-none d-lg-block" style="z-index: 2000; background-color: #262626;">
+  <div class="container-fluid">
+    <!-- Navbar brand -->
+    <a class="navbar-brand nav-link" href="/dashboard">
+      <strong>rent<span class="text-danger">X</span></strong>
+    </a>
+    <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarExample01"
+      aria-controls="navbarExample01" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarExample01">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item active">
+          <a class="nav-link" aria-current="page" style="text-decoration: none; color: white;" href="/dashboard">Dashboard</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link text-white" aria-current="page" href="/my_profile">My Profile</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a  class="nav-link" style="text-decoration: none; color: white;" href="/show">for testing</a>
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link" style="text-decoration: none; color: white;" href="/logout">Log Out</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav d-flex flex-row">
+
+        <li class="nav-item me-3 me-lg-0">
+            <h6 class="breadcrumb-item active text-white aria-current="page">Welcome<span class="text-danger"> {{request.session.firstname}}!</span></h6>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3 mt-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-5">C<span class="text-danger">r</span>eate an account</h2>
+
+              <form method="post" action="/update/{{oneproduct.id}}">
+                {% csrf_token %}
+                <div class="form-outline mb-4">
+                  <label for="formGroupExampleInput">name</label>
+              <input type="text" class="form-control" id="formGroupExampleInput" name="name"  value="{{oneproduct.name}}" >
+                </div>
+
+                <div class="form-outline mb-4">
+                  <label for="formGroupExampleInput">description</label>
+                  <input type="text" class="form-control" name="desc"  value="{{oneproduct.description}}" >
+                </div>
+
+                <div class="form-outline mb-4">
+                  <label for="formGroupExampleInput">price</label>
+                  <input type="number" class="form-control" name="price"   value="{{oneproduct.price}}">
+                </div>
+
+                <div class="form-outline mb-5">
+                  <label for="formGroupExampleInput">location</label>
+                  <input type="text" class="form-control" name="location"   value="{{oneproduct.location}}">
+                </div>
+
+                <div class="form-outline mb-4">
+                  <select class="form-select" aria-label="Default select example"  name="selectcategory">
+                    {%for category in categories%}
+                    
+                    <option value="{{category.id}}" >{{category.name}}</option>
+                   
+                    {%endfor%}
+                  </select>
+                </div>
+
+                <!-- <div class="form-check d-flex justify-content-center mb-5">
+                  <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" />
+                  <label class="form-check-label" for="form2Example3g">
+                    I agree all statements in <a href="#!" class="text-body"><u>Terms of service</u></a>
+                  </label>
+                </div> -->
+
+                <div class="d-flex justify-content-center">
+                  <button type="submit"
+                    class="btn btn-dark btn-block btn-lg gradient-custom-4 btn-primary" type="submit">Update!</button>
+                </div>
+
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- <div class="flex2">
         <p class="text">Rent<span style="color: #ea5353; font-size:50px;">X</span></p>
         <div class="flex">
         <a class="ancor" href="/my_profile">My Profile</a>
@@ -74,7 +172,7 @@
                 <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
             {% endfor %}
         </ul>
-        {% endif %}
+        {% endif %} -->
 </body>
 
 </html>

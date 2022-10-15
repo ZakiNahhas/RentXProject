@@ -5,12 +5,89 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
+    <!-- MDB -->
+    <link rel="stylesheet" href="static/css/mdb.min.css" />
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="static/css/style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
-<body>
-  <div  style="width:500px; height:300px; border:1px solid black; padding:10px; margin: 0 auto; margin-top:20px; background-color: rgb(139, 242, 208); " >
+<body style="background-color: #eee;">
+   <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-none d-lg-block" style="z-index: 2000; background-color: #262626;">
+      <div class="container-fluid">
+        <!-- Navbar brand -->
+        <a class="navbar-brand nav-link" href="/dashboard">
+          <strong>rent<span class="text-danger">X</span></strong>
+        </a>
+        <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarExample01"
+          aria-controls="navbarExample01" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarExample01">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" aria-current="page" style="text-decoration: none; color: white;" href="/dashboard">Dashboard</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link text-white" aria-current="page" href="/my_profile">My Profile</a>
+            </li>
+            <!-- <li class="nav-item">
+              <a  class="nav-link" style="text-decoration: none; color: white;" href="/show">for testing</a>
+            </li> -->
+            <li class="nav-item">
+              <a class="nav-link" style="text-decoration: none; color: white;" href="/logout">Log Out</a>
+            </li>
+          </ul>
+  
+          <ul class="navbar-nav d-flex flex-row">
+  
+            <li class="nav-item me-3 me-lg-0">
+                <h6 class="breadcrumb-item active text-white aria-current="page">Welcome<span class="text-danger"> {{request.session.firstname}}!</span></h6>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <section class="vh-100 bg-image img-fluid">
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-5"><span class="text-danger">P</span>roduct Info.</h2>
+
+              <div>
+               <h1>{{ordertaker.taker.id}}</h1>
+                <p><span class="h6">Rented Product:</span><span> {{rentedproduct.name}}</span></p>
+                <p><span class="h6">Product Category:</span> {{rentedproduct.category.name}}</p>
+                <p><span class="h6">Rent Price:</span> {{rentedproduct.price}} ₪</p>
+                <p><span class="h6">Renter Name:</span> {{rentedproduct.offered_by.firstname}} {{rentedproduct.offered_by.lastname}}</p>
+                <p><span class="h6">Rentee Name:</span> {{ordertaker.firstname}} {{ordertaker.lastname}}</p> 
+                <p><span class="h6">Order No.:</span> {{rentedproduct.inrenting.id}}</p>
+               
+                <button type="button" class="btn btn-danger btn-sm mt-2"><a  style="text-decoration: none; color: white;" href="/my_profile">Go Back</a></button>
+               </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+    
+  <!-- <div  style="width:500px; height:300px; border:1px solid black; padding:10px; margin: 0 auto; margin-top:20px; background-color: rgb(139, 242, 208); " >
   <input type="hidden"  name="rentid"  value="{{rent.id}}">
   <h1>{{ordertaker.taker.id}}</h1>
    <p>Rented product : {{rentedproduct.name}}</p>
+   <p>ameeer</p>
    <p>product category : {{rentedproduct.category.name}}</p>
    <p>Rent price: {{rentedproduct.price}}</p>
    <p>Renter name: {{rentedproduct.offered_by.firstname}}    {{rentedproduct.offered_by.lastname}}</p>
@@ -19,8 +96,8 @@
    <p>Order id: {{rentedproduct.inrenting.id}}</p>
    <a href="/dashboard">go back</a>
 
-   
-   
+    -->
+  </div>
 
 <!-- {%for rent in rents%}
 
