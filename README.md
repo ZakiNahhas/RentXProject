@@ -27,7 +27,7 @@
 <p align="left"> Although there are many social groups on social media platforms that one can use to rent stuff, there was no proper, direct way to do it. The search for the right group in itself was even harder than living alone. That's where Rentx shines, as it is direct to the point, no chating, no need to search for hours, you can just get that specific product you need, that's it!
 </p>
 
-<h3 align="left">Features</h3>
+<h3 align="left">Features:</h3>
 <p align="left"> --> A renter can easily upload photos of the product to be shared.
                  --> Products are divided into categories.
                  --> Categories can be filtered to make it easier to find something.
