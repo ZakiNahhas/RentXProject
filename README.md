@@ -7,7 +7,7 @@
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=zakinahhas&label=Profile%20views&color=0e75b6&style=flat" alt="zakinahhas" /> </p>
 
-<h3 align="left">Motivation</h3>
+<h3 align="left">Motivation:</h3>
 <p align="left">Almost all of us have been through the hardships of living alone, without our parents. We wanted to help with one of these hardships, by creating RentX!
 </p>
 
