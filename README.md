@@ -1,9 +1,8 @@
 <h1 align="center">Hi 👋, we're Ameer, Haneen, Khaled, and Zaki</h1>
 <h3 align="center">A passionate group of fresh developers</h3>
 
-<h3 align="left">Project name:</h3>
-<p align="left"> RentX
-</p>
+## Project name:
+ RentX
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=zakinahhas&label=Profile%20views&color=0e75b6&style=flat" alt="zakinahhas" /> </p>
 
