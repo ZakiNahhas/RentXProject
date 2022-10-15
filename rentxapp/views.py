@@ -79,6 +79,7 @@ def searching(request):
     request.session['search'] =request.POST['search']
     search_in= request.session['search']
     context={
+        "user": User.objects.get(id=request.session["userid"]),
         'products':Product.objects.filter(name__contains=search_in).all()
     }
    
@@ -148,7 +149,8 @@ def delete_product(request,id):
 
 def oneproduct(request,id):
     context={
-        'oneproduct': Product.objects.get(id=int(id))
+        'oneproduct': Product.objects.get(id=int(id)),
+        'user':User.objects.get(id=request.session['userid'])
     }
     return render(request, 'product.html', context)
 
@@ -188,32 +190,62 @@ def updateproduct(request,id):
 def officecat(request):
     
     context={
-        # 'office': Category.objects.filter(name="office")
-        # 'cats': Category.objects.all()
+       
         'products': Product.objects.all()
 
     }
     return render(request, 'office.html', context)
 
 def electcat(request):
-    
     context={
-        # 'office': Category.objects.filter(name="office")
-        # 'cats': Category.objects.all()
+       
         'products': Product.objects.all()
-
+    
     }
+
     return render(request, 'elect.html', context)
+
+
+
+
 
 def homecat(request):
     
     context={
-        # 'office': Category.objects.filter(name="office")
-        # 'cats': Category.objects.all()
+       
         'products': Product.objects.all()
 
     }
     return render(request, 'home.html', context)
+
+
+
+
+
+def filtering(request):
+    if request.POST['filterproducts']=='free':
+        context={
+           
+            'freeproducts':Product.objects.filter(name__contains=request.session['search'],price=0).all()
+        }
+
+    if request.POST['filterproducts']=='low':
+        context={
+            'lowproducts':Product.objects.filter(name__contains=request.session['search']).order_by("price")
+        }
+
+    if request.POST['filterproducts']=='like':
+        context={
+            'likeproducts':Product.objects.filter(name__contains=request.session['search']).annotate(like_count=Count('liked_by')).order_by('-liked_by')
+        }
+    return render(request, 'free.html',context)
+
+
+
+
+
+
+
 
 def addtowish(request,id):
     userliking= User.objects.get(id=request.session['userid'])
@@ -232,26 +264,38 @@ def unwish(request,id):
 
 def renting(request,id):
     product_x= Product.objects.get(id=int(id))
+    product_x.status=1
+    product_x.save()
     userof= product_x.offered_by.id
     renter= User.objects.get(id=userof)
-    rentee=  User.objects.get(id=request.session['userid'])
-    Rental.objects.create(renter=renter,rentee=rentee,rented_product=product_x, status=0)
-    return redirect('/rentdone/'+str(id))
-
-def rentdone(request,id):
     
+    Rental.objects.create(renter=renter,rented_product=product_x)
+    theuser=  User.objects.get(id=request.session['userid'])
+    rent_x= Rental.objects.last()
+    rent_x.rentee.add(theuser)
+    rent_x.save()
+    return redirect("/my_profile")
 
-    context={
-        'rentedproduct':Product.objects.get(id=int(id)),
-        'ordertaker': User.objects.get(id=request.session['userid']),
-        'rents': Rental.objects.all()
-    }
-    return render(request, 'form.html', context)
+
+
+
+# def rentdone(request,id):
+#     context={
+#         'rentedproduct':Product.objects.get(id=int(id)),
+#         'rentee': User.objects.get(id=request.session['userid']),
+#         'rents': Rental.objects.filter(rented_product=Product.objects.get(id=int(id)))
+#     }
+#     return render(request, 'form.html', context)
 
 def unrent(request,id):
+    rentee= User.objects.get(id=request.session['userid'])
     order_x= Rental.objects.get(id=int(id))
-    order_x.status=1
+    product_x=order_x.rented_product
+    product_x.status = 0
+    product_x.save()
+    order_x.rentee.remove(rentee)
     order_x.save()
+    
     return redirect("/my_profile")
 
 

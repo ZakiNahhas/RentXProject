@@ -94,11 +94,9 @@
                     <span></span><span> {{oneproduct.category.name}}</span>
                   </div>
                   <div class="mt-1 mb-0 text-muted small">
-                    <span>Like(s)</span><span> {{oneproduct.liked_by.count}}</span>
+                    <span>Wished for</span><span> {{oneproduct.liked_by.count}}</span>
                   </div>
-                  <div class="mb-2 text-muted small">
-                    <span>Rental Status</span><span>{{oneproduct.inrenting.status}}</span>
-                  </div>
+                  
                   <p class="text-truncate mb-4 mb-md-0">
                     {{oneproduct.description}}
                   </p>
@@ -110,19 +108,28 @@
                   </div>
                   
                   <h6 class="text-success">Free shipping</h6>
+                
                   <div class="d-flex flex-column mt-4">
+                    {% if user.id == oneproduct.offered_by.id %}
+                      <p>You offered this product!</p>
+                        {% elif oneproduct.status == 0  %}
                       <button type="button" class="btn btn-outline-dark btn-sm mt-2 border-0">
                         <form action="/renting/{{oneproduct.id}}" method="post">
                         {% csrf_token %}
                        <button type="submit" class="btn  btn-dark btn-sm mt-2" >Rent<span class="text-danger">X</span></button>
                       </form>
                     </button>
-                    
-                    <button type="button" class="btn btn-outline-dark btn-sm mt-2"><a  style="text-decoration: none; color: red;" href="/liking/{{oneproduct.id}}">Add to wishlist</a></button>
+                    {% endif %}
+                    {%if user in oneproduct.liked_by.all%}
                     <button type="button" class="btn btn-outline-dark btn-sm mt-2"><a  style="text-decoration: none;  color: red;" href="/unliking/{{oneproduct.id}}">Remove frome wishlist</a></button>
-      
+                        {%else%}
+                    <button type="button" class="btn btn-outline-dark btn-sm mt-2"><a  style="text-decoration: none; color: red;" href="/liking/{{oneproduct.id}}">Add to wishlist</a></button>
+                    {%endif%}
                     <button type="button" class="btn btn-danger btn-sm mt-2"><a  style="text-decoration: none; color: white;" href="/my_profile">Go Back</a></button>
-                  
+                    
+
+                    
+                    
                   </div>
                 </div>
               </div>

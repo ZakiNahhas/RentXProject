@@ -64,14 +64,15 @@
               <h2 class="text-uppercase text-center mb-5"><span class="text-danger">P</span>roduct Info.</h2>
 
               <div>
-               <h1>{{ordertaker.taker.id}}</h1>
+               {%for rent in rentee.rentals_taken.all%}
+               
                 <p><span class="h6">Rented Product:</span><span> {{rentedproduct.name}}</span></p>
                 <p><span class="h6">Product Category:</span> {{rentedproduct.category.name}}</p>
                 <p><span class="h6">Rent Price:</span> {{rentedproduct.price}} ₪</p>
                 <p><span class="h6">Renter Name:</span> {{rentedproduct.offered_by.firstname}} {{rentedproduct.offered_by.lastname}}</p>
-                <p><span class="h6">Rentee Name:</span> {{ordertaker.firstname}} {{ordertaker.lastname}}</p> 
-                <p><span class="h6">Order No.:</span> {{rentedproduct.inrenting.id}}</p>
-               
+                <p><span class="h6">Rentee Name:</span> {{rentee.firstname}} {{rentee.lastname}}</p> 
+                <p><span class="h6">Order No.:</span> {{rent.rented_product.id}}</p>
+               {%endfor%}
                 <button type="button" class="btn btn-danger btn-sm mt-2"><a  style="text-decoration: none; color: white;" href="/my_profile">Go Back</a></button>
                </div>
 
