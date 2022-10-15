@@ -28,10 +28,10 @@
 </p>
 
 <h3 align="left">Features</h3>
-<p align="left"> --> A renter can easily upload photos of the product to be shared
-                 --> Products are divided into categories
-                 --> Categories can be filtered to make it easier to find something
-                 --> A search bar with auto complete to search for a specific product
+<p align="left"> --> A renter can easily upload photos of the product to be shared.
+                 --> Products are divided into categories.
+                 --> Categories can be filtered to make it easier to find something.
+                 --> A search bar with auto complete to search for a specific product.
 </p>
 
 <h3 align="left">Languages and Tools:</h3>
