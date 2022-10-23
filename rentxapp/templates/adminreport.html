@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Admin</title>
+</head>
+<body >
+    <div style="width:1000px; height:1000px;  margin: 0 auto">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-none d-lg-block fixed-top" style="z-index: 2000;">
+        <div class="container-fluid">
+          <!-- Navbar brand -->
+          <a class="navbar-brand nav-link" href="/dashboard">
+            <strong>rent<span class="text-danger">X</span></strong>
+          </a>
+          <div class="collapse navbar-collapse" id="navbarExample01">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" style="text-decoration: none; color: white;">Admin Page</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+<div>
+
+   <div  style="display: flex; justify-content: space-around; width:1200px; margin-top:50px;">
+    <div class="card border-danger mb-1" style="max-width: 15rem; margin-right: 7px">
+      <div class="card-header">Number of offered products for free </div>
+      <div class="card-body text-danger">
+        <h5 class="card-title">{{freeproductsno.count}}</h5>
+      </div>
+      </div>
+
+      <div class="card border-danger mb-1" style="max-width: 15rem; margin-right: 7px;">
+        <div class="card-header">Number of active rents in the website </div>
+        <div class="card-body text-danger">
+          <h5 class="card-title">{{activerentsno.count}}</h5>
+        </div>
+        </div>
+
+        <div class="card border-danger mb-1" style="max-width: 15rem; margin-right: 7px">
+          <div class="card-header">Number of available products for renting </div>
+          <div class="card-body text-danger">
+            <h5 class="card-title">{{ availableproducts.count}}</h5>
+          </div>
+          </div>
+
+          <div class="card border-danger mb-1" style="max-width: 15rem; margin-right: 7px">
+            <div class="card-header">Number of users in the website </div>
+            <div class="card-body text-danger">
+              <h5 class="card-title">{{userno.count}}</h5>
+            </div>
+            </div>
+
+            <div class="card border-danger mb-1" style="max-width: 15rem; margin-right: 7px">
+              <div class="card-header">Number of users offering products  </div>
+              <div class="card-body text-danger">
+                <h5 class="card-title">{{rentersno.count}}</h5>
+              </div>
+              </div>
+            </div>
+    
+    
+
+    
+   
+   
+
+
+
+<h3 style="  text-align: center;color:darkred">All products uploaded to the website!</h3>
+<table class="table table-striped table-dark" style=" margin-top: 10px;">
+  <thead class="table table-striped table-dark">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Price</th>
+      <th scope="col">Category</th>
+      <th scope="col">Location</th>
+      <th scope="col">Offered by</th>
+      <th scope="col">Image</th>
+      <th scope="col">Actions</th>
+
+    </tr>
+  </thead>
+  <tbody>
+      {%for product in products%}
+  
+      <tr>
+      <td>{{product.id}}</td>
+      <td>{{product.name}}</td>
+      <td>{{product.description}}</td>
+      <td>{{product.price}}</td>
+       
+      <td>{{product.category.name}}</td>
+      <td>{{product.location}}</td>
+       
+      <td>{{product.offered_by.firstname}}   {{product.offered_by.lastname}}</td>
+     
+      <td><img src="{{ product.product_image.url }}" style="width:50px; height:50px"></td>
+     
+      <td><a href="/show/{{product.id}}">Show</a></td>
+        
+    </tr>
+
+    {%endfor%}
+  
+  </tbody>
+  </table>
+
+
+   
+<h3 style="  text-align: center;color:darkred">All users in the website</h3>
+    <table class="table table-striped table-dark" >
+        <thead>
+            <tr>
+              <th scope="col">User ID</th>
+              <th scope="col">User Name</th>
+              <th scope="col">User email</th>
+              <th scope="col">User password</th>
+             
+            </tr>
+          </thead>
+      
+        <tbody>
+          {%for user in users%}
+          <tr>
+            
+            <td>{{user.id}}</td>
+            <td>{{user.firstname}}   {{user.lastname}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.password}}</td>
+       
+          </tr>
+        {%endfor%}
+        </tbody>
+      </table>
+ 
+
+
+
+
+
+
+<h3 style="  text-align: center;color:darkred">Rents records in the website</h3>
+    <table class="table table-striped table-dark" >
+      <thead>
+        <tr>
+          <th scope="col">Rental ID</th>
+          <th scope="col">Renter Name</th>
+          <th scope="col">Rented Product ID</th>
+          <th scope="col">Rented Product</th>
+          <th scope="col">Rental Time</th>
+        </tr>
+      </thead>
+    
+      <tbody>
+        {%for rent in rents%}
+        <tr>
+          
+          <td>{{rent.id}}</td>
+          <td>{{rent.renter.firstname}}</td>
+          <td>{{rent.rented_product.id}}</td>
+          <td>{{rent.rented_product.name}}</td>
+          <td>{{rent.created_at}}</td>
+        </tr>
+      {%endfor%}
+      </tbody>
+ 
+   </table>
+
+
+   <div style="display: flex; justify-content: space-around;width:1000px; align-items: center;">
+<div  style="width: 300px; height:auto">
+<h3  style="  text-align: center;color:darkred" >Avaiable products </h3>
+    <table class="table table-striped table-dark">
+      <thead>
+        <tr>
+          <th scope="col">Product ID</th>
+          <th scope="col">Product Name</th>
+          <th scope="col">Product price</th>
+          <th scope="col">Location</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+    
+      <tbody>
+        {%for product in availableproducts%}
+        <tr>
+          
+            <td>{{product.id}}</td>
+            <td>{{product.name}}</td>
+            <td>{{product.price}}</td>
+            <td>{{product.location}}</td>
+            <td>{{product.status}}</td>
+        </tr>
+      {%endfor%}
+      </tbody>
+    </table>
+</div>
+
+
+<div  style="width: 300px; height:auto">
+
+    <h3  style="  text-align: center;color:darkred">Active rents</h3>
+    <table class="table table-striped table-dark">
+      <thead>
+        <tr>
+         
+            <th scope="col">Product ID</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Product price</th>
+            <th scope="col">Location</th>
+            <th scope="col">Status</th>
+         
+        </tr>
+      </thead>
+    
+      <tbody>
+        {%for product in rentedproducts%}
+        <tr>
+          
+          <td>{{product.id}}</td>
+          <td>{{product.name}}</td>
+          <td>{{product.price}}</td>
+          <td>{{product.location}}</td>
+          <td>{{product.status}}</td>
+         
+        </tr>
+      {%endfor%}
+      </tbody>
+    </table>
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+</div>   
+
+</div>      
+
+
+
+
+ 
+</body>
+</html>

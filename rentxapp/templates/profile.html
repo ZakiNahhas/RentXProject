@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
+    <title>RentX</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
     <!-- Font Awesome -->
@@ -66,8 +66,6 @@
               <h5 class="my-3">{{user.firstname}} {{user.lastname}}</h5>
               <p class="text-muted mb-1">{{user.email}}</p>
               <div class="d-flex justify-content-center mb-2">
-                <!-- <button type="button" class="btn btn-primary">Follow</button>
-                <button type="button" class="btn btn-outline-primary ms-1">Message</button> -->
               </div>
             </div>
           </div>
@@ -107,13 +105,7 @@
                       </div>
                     </div>
                   </div>
-                  {%endfor%}
-
-
-                  
-
-
-      
+                  {%endfor%}      
                 </div>
               </div>
             </div>
@@ -130,12 +122,10 @@
                       {%if order.rented_product.status == 1 %}
                       <div class="mt-5">
                       <p><strong>Renter Name:</strong> {{order.renter.firstname}} {{order.renter.lastname}}</p>
-                      <p><strong>Rentee Name:</strong> {{order.rentee.firstname}} {{order.rentee.lastname}}</p>
                       <p><strong>Rented Product:</strong> {{order.rented_product.name}}</p>
                       <p><strong>Order No.</strong> {{order.id}}</p>
                     </div>
                       <div class="d-flex flex-row mt-3">
-                       
                         <button type="button" class="btn btn-danger flex-fill ms-1"><a  style="text-decoration: none; color: white;" href="/unrent/{{order.id}}">Unrent</a></button>
                       </div>
                       {%endif%}

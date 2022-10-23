@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form</title>
+    <title>RentX</title>
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
@@ -12,7 +12,7 @@
 </head>
 <body style="background-color: #eee;">
      <!-- Navbar -->
-     <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-none d-lg-block" style="z-index: 2000;">
+     <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-none d-lg-block fixed-top" style="z-index: 2000;">
       <div class="container-fluid">
           <!-- Navbar brand -->
           <a class="navbar-brand nav-link" href="/dashboard">
@@ -26,7 +26,7 @@
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item active">
                       <a class="nav-link" aria-current="page" style="text-decoration: none; color: white;"
-                          href="/cover">Home Page</a>
+                          href="/">Home Page</a>
                   </li>
               </ul>
 
@@ -40,39 +40,39 @@
       </div>
   </nav>
 
-  <section class="mt-5">
+  <section style="margin-top: 6%;">
   <div class="mask d-flex align-items-center h-100 gradient-custom-3">
     <div class="container h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-md-9 col-lg-7 col-xl-6">
           <div class="card" style="border-radius: 15px;">
-            <div class="card-body p-5">
+            <div class="card-body">
               <h2 class="text-uppercase text-center mb-5">C<span class="text-danger">r</span>eate an account</h2>
 
               <form method="post" action="/register">
                 {% csrf_token %}
                 <div class="form-outline mb-4">
-                  <input type="text" id="form3Example1cg" name="firstname" class="form-control form-control-lg" placeholder="First Name" required/>
+                  <input type="text" id="form3Example1cg" name="firstname" class="form-control form-control-lg" placeholder="First Name"/>
                   <!-- <label class="form-label" for="form3Example1cg">Your Name</label> -->
                 </div>
 
                 <div class="form-outline mb-4">
-                  <input type="text" id="form3Example1cg" name="lastname" class="form-control form-control-lg" placeholder="Last Name" required/>
+                  <input type="text" id="form3Example1cg" name="lastname" class="form-control form-control-lg" placeholder="Last Name"/>
                   <!-- <label class="form-label" for="form3Example1cg">Your Name</label> -->
                 </div>
 
                 <div class="form-outline mb-4">
-                  <input type="email" id="form3Example3cg" name="email" class="form-control form-control-lg" placeholder="Your Email" required/>
+                  <input type="email" id="form3Example3cg" name="email" class="form-control form-control-lg" placeholder="Your Email"/>
                   <!-- <label class="form-label" for="form3Example3cg">Your Email</label> -->
                 </div>
 
                 <div class="form-outline mb-4">
-                  <input type="password" id="form3Example4cg" name="password" class="form-control form-control-lg" placeholder="Password" required/>
+                  <input type="password" id="form3Example4cg" name="password" class="form-control form-control-lg" placeholder="Password"/>
                   <!-- <label class="form-label" for="form3Example4cg">Password</label> -->
                 </div>
 
                 <div class="form-outline mb-4">
-                  <input type="password" id="form3Example4cdg" name="password_confirm" class="form-control form-control-lg" placeholder="Repeat your password" required/>
+                  <input type="password" id="form3Example4cdg" name="password_confirm" class="form-control form-control-lg" placeholder="Repeat your password"/>
                   <!-- <label class="form-label" for="form3Example4cdg">Repeat your password</label> -->
                 </div>
 
@@ -93,5 +93,12 @@
     </div>
   </div>
 </section>
+{% if messages %}
+    <ul class="messages">    
+        {% for message in messages %}    
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+        {% endfor %}
+    </ul>
+    {% endif %}
 </body>
 </html>

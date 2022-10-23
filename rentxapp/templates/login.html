@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form</title>
+    <title>RentX</title>
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
@@ -13,7 +13,7 @@
 <body style="background-color: #eee;">
   
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-none d-lg-block" style="z-index: 2000;">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-none d-lg-block fixed-top" style="z-index: 2000;">
       <div class="container-fluid">
           <!-- Navbar brand -->
           <a class="navbar-brand nav-link" href="/dashboard">
@@ -41,7 +41,7 @@
       </div>
   </nav>
 
-  <section>
+  <section style="margin-top: 6%;">
     <div class="container mt-5">
       <div class="row d-flex justify-content-center align-items-center">
         <div class="col col-xl-10">
@@ -64,12 +64,12 @@
                     <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
   
                     <div class="form-outline mb-4">
-                      <input type="email" id="form2Example17" name="email" class="form-control form-control-lg" placeholder="Email address" required/>
+                      <input type="email" id="form2Example17" name="email" class="form-control form-control-lg" placeholder="Email address"/>
                     
                     </div>
   
                     <div class="form-outline mb-4">
-                      <input type="password" id="form2Example27" name="password" class="form-control form-control-lg" placeholder="Password" required/>
+                      <input type="password" id="form2Example27" name="password" class="form-control form-control-lg" placeholder="Password"/>
                 
                     </div>
   
@@ -89,6 +89,13 @@
       </div>
     </div>
   </section>
+  {% if messages %}
+    <ul class="messages">    
+        {% for message in messages %}    
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+        {% endfor %}
+    </ul>
+    {% endif %}
       <script src="static/js/script.js"></script>
 </body>
 </html>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>RentX</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
     <!-- Font Awesome -->
@@ -78,15 +78,6 @@
                 <div class="col-md-6 col-lg-6 col-xl-6 mt-5">
                   <h4>{{oneproduct.name}}</h4>
                   <div class="d-flex flex-row mt-3">
-                    <!-- <div class="text-danger mb-1 me-2">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                    <span>310</span> -->
-                    
-                   
                       <span>Product No.</span><span> {{oneproduct.id}}</span>
                     
                   </div>
@@ -104,10 +95,10 @@
                 <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
                   <div class="d-flex flex-row align-items-center mb-1">
                     <h4 class="mb-1 me-1">₪ {{oneproduct.price}}</h4>
-                    <!-- <span class="text-danger"><s>$20.99</s></span> -->
                   </div>
                   
                   <h6 class="text-success">Free shipping</h6>
+                  <h6 class="text-dark mt-3">{{oneproduct.location}}</h6>
                 
                   <div class="d-flex flex-column mt-4">
                     {% if user.id == oneproduct.offered_by.id %}
@@ -116,7 +107,7 @@
                       <button type="button" class="btn btn-outline-dark btn-sm mt-2 border-0">
                         <form action="/renting/{{oneproduct.id}}" method="post">
                         {% csrf_token %}
-                       <button type="submit" class="btn  btn-dark btn-sm mt-2" >Rent<span class="text-danger">X</span></button>
+                      <button type="submit" class="btn  btn-dark btn-sm mt-2" >Rent<span class="text-danger">X</span></button>
                       </form>
                     </button>
                     {% endif %}
@@ -133,91 +124,5 @@
           </div>
         </div>
       </div>
-      
-  <!-- </section>
-  <section style="background-color: #eee;">
-    <div class="container py-5">
-      <div class="row justify-content-center">
-        <div class="col-md-8 col-lg-6 col-xl-4">
-          <img src="{{ oneproduct.product_image.url }}"
-              class="card-img-top" alt="Apple Computer" />
-        </div>
-        <div class="col-md-8 col-lg-6 col-xl-4">
-          <div class="card text-black">
-            <img src="{{ oneproduct.product_image.url }}"
-              class="card-img-top" alt="Apple Computer" />
-              
-            <div class="card-body">
-              <div class="text-center">
-                <h5 class="card-title">{{oneproduct.name}}</h5>
-                <p class="text-muted mb-4">{{oneproduct.description}}</p>
-              </div>
-              <div>
-                <div class="d-flex justify-content-between">
-                  <span>Product No.</span><span>{{oneproduct.id}}</span>
-                </div>
-                <div class="d-flex justify-content-between">
-                  <span>Rental Status</span><span>{{oneproduct.inrenting.status}}</span>
-                </div>
-                <div class="d-flex justify-content-between">
-                  <span>Like(s)</span><span><p>{{oneproduct.liked_by.count}}</p></span>
-                </div>
-              </div>
-              <div class="d-flex justify-content-between total font-weight-bold mt-4">
-                <span>Price</span><span>{{oneproduct.price}}</span>
-              </div>
-              <div class="d-flex flex-row mt-3">
-                <button type="button" class="btn btn-dark flex-fill me-1" data-mdb-ripple-color="dark">
-                  <a style="text-decoration: none; color: white;"  href="/liking/{{oneproduct.id}}">Like me!</a>
-                  
-                </button>
-                <button type="button" class="btn btn-dark flex-fill ms-1"><a  style="text-decoration: none; color: white;" href="/unliking/{{oneproduct.id}}">Dislike me!</a></button>
-                <button type="button" class="btn btn-danger flex-fill ms-1"><a  style="text-decoration: none; color: white;" href="/show">Go back</a></button>
-              </div>
-              <div class="d-flex flex-row mt-3">
-                <button type="button" class="btn btn-primary flex-fill ms-1"><a  style="text-decoration: none; color: white;" href="/show">Rent</a></button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section> -->
-  <!-- <div class="flex2">
-      <p class="text">Rent<span style="color: #ea5353; font-size:50px;">X</span></p>
-      <div class="flex">
-      <a class="ancor" href="/dashboard">Dashboard</a>
-      Welcome {{request.session.firstname}}!
-      <a href="/adminz/dash">Admin dash</a>
-      <a href="/adminz/form">Admin form</a>
-      <a class="ancor" href="/logout">Log Out</a>
-      </div>
-  </div>
-  <div  style="width:500px; height:600px; border:1px solid black; padding:10px; margin: 0 auto; margin-top:20px; background-color: rgb(139, 242, 208); " >
-    <h1>Product ID {{oneproduct.id}}</h1> 
-    <p>Product Name: {{oneproduct.name}}</p>
-    <p>Price: {{oneproduct.price}}</p>
-    <p>Description: {{oneproduct.description}}</p>
-    <p>rental status: {{oneproduct.inrenting.status}}</p>
-    <div><img src="{{ oneproduct.product_image.url }}" style="width:100px; height:auto"></div>
-   
- 
-   <div style="margin-top:10px"  ><a href="/show" >Go back</a></div>
-   <div><a href="/liking/{{oneproduct.id}}">Like me!</a></div>
-   <div><a href="/unliking/{{oneproduct.id}}">dislike me!</a></div>
-     <p>{{oneproduct.liked_by.count}}  likes</p>
- 
-   <div>
-     
-     <form action="/renting/{{oneproduct.id}}" method="post">
-       {% csrf_token %}
-        
-      <button>Rent</button>
-     </form>
-     
-  </div>
- 
-</div> -->
-
 </body>
 </html>

@@ -19,12 +19,34 @@ def register_page(request):
 # def index(request):
 #     return render(request, "cover.html")
 
+
+def adminreport(request):
+
+    context={
+            'freeproducts':Product.objects.filter(price=0),
+            'rents': Rental.objects.all(),
+            'lowproducts':Product.objects.order_by("price"),
+            'products':Product.objects.all(),
+            'users':User.objects.all(),
+            'rentedproducts':Product.objects.filter(status=1),
+            'availableproducts':Product.objects.filter(status=0),
+
+            'rented':Rental.objects.annotate(product_count=Count('rented_product')).order_by('-rented_product'),
+            'likeproducts':Product.objects.annotate(like_count=Count('liked_by')).order_by('-liked_by'),
+            'freeproductsno':Product.objects.filter(price=0).annotate(Count("name")),
+            'activerentsno':Product.objects.filter(status=1).annotate(Count("name")),
+            'availableproductsnum':Product.objects.filter(status=0).annotate(Count("name")),
+            'userno':User.objects.annotate(Count("id")),
+            'rentersno':Product.objects.values("offered_by").annotate(Count("id"))
+        }
+    return render(request, 'adminreport.html',context)
+
 def register(request):
     errors = User.objects.basic_validator(request.POST)
     if len(errors) > 0:
         for key, value in errors.items():
             messages.error(request, value)
-        return redirect('/')
+        return redirect('/register_page')
     else:
         password = request.POST['password']
         pw_hash = bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt()).decode()  
@@ -45,14 +67,14 @@ def login(request):
     if len(existing_user) == 0:
         messages.error(request, "Please enter valid credentials.")
 
-        return redirect('/')
+        return redirect('/login_page')
 
     user = existing_user[0]
 
     if not bcrypt.checkpw(request.POST['password'].encode(), user.password.encode()):
         messages.error(request, "Please enter valid credentials.")
 
-        return redirect('/')
+        return redirect('/login_page')
 
     request.session['firstname'] = user.firstname
     request.session['lastname'] = user.lastname
@@ -80,7 +102,7 @@ def searching(request):
     search_in= request.session['search']
     context={
         "user": User.objects.get(id=request.session["userid"]),
-        'products':Product.objects.filter(name__contains=search_in).all()
+        'products':Product.objects.filter(name__contains=search_in).all(),
     }
    
     return render(request, 'out.html', context)
@@ -179,6 +201,7 @@ def updateproduct(request,id):
         productinstance.description=request.POST["desc"]
         category= Category.objects.get(id=request.POST['selectcategory'])
         productinstance.category=category
+        productinstance.product_image=request.FILES['proimage']
         productinstance.save()
            
         

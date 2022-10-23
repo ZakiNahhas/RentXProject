@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>RentX</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
     <!-- Font Awesome -->
@@ -45,29 +45,8 @@
           <li class="nav-item active">
             <a class="nav-link text-white" aria-current="page" href="/my_profile">My Profile</a>
           </li>
-          <!-- <li class="nav-item">
-            <a  class="nav-link" style="text-decoration: none; color: white;" href="/show">for testing</a>
-          </li> -->
+          </li>
           <li>
-            <!-- <form action="/filtering" method="post">
-            {% csrf_token %}
-            <select class="form-select bg-dark text-danger border-0" aria-label="Default select example">
-             
-              <option value="free">Free Products</option>
-              <option value="low">Lowest Price</option>
-              <option value="like">Most liked</option>
-            </select>
-            <button>Look up!</button>
-        </form>
-
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Cities</a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Free Products</a></li>
-                    <li><a class="dropdown-item" href="#">Lowets Price</a></li>
-                    <li><a class="dropdown-item" href="#">Most Likes</a></li>
-                </ul>
-        </li> -->
 
           </li>
           <li class="nav-item">
@@ -86,19 +65,18 @@
     </div>
   </nav>
 
-  <div style="margin-top: 5%; margin-left: 40%;">
+  <div style="margin-top: 5%; margin-left: 30%;">
   <form action="/filtering" method="post">
     {% csrf_token %}
-    <select name="filterproducts" id="filter" class="form-select w-25" aria-label="Default select example">
+    <select name="filterproducts" id="filter" class="form-select w-50" aria-label="Default select example">
         <option value="free">Free products</option>
         <option value="low">Lowest Price</option>
         <option value="like">Most liked</option>
     </select>
-    <button style="margin-left: 7%;" type="submit" class="btn btn-dark btn-sm mt-2">LooK up!</button>
+    <button style="margin-left: 20%;" type="submit" class="btn btn-dark btn-sm mt-2">LooK up!</button>
 </form>
 </div>
 
-    
     <div style="margin-top: 3%;">
     {%for product in products%}
     {%if product.status == 0%}
@@ -111,7 +89,7 @@
                             <div class="row">
                                 <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
                                     
-                                    <div class="bg-image hover-zoom ripple rounded ripple-surface mt-5">
+                                    <div class="bg-image hover-zoom ripple rounded ripple-surface mt-3">
                                         <img src="{{ product.product_image.url }}" class="w-100" />
                                         <a href="#!">
                                             <div class="hover-overlay">
@@ -147,7 +125,8 @@
                                         <h4 class="mb-1 me-1 text-danger">₪ {{product.price}}</h4>
                                         <!-- <span class="text-danger"><s>$20.99</s></span> -->
                                     </div>
-                                    <h6 class="text-success mt-5">Free shipping</h6>
+                                    <h6 class="text-success">Free shipping</h6>
+                                    <h6 class="text-dark mt-5">{{product.location}}</h6>
                                     <div class="d-flex flex-column mt-5">
                                         <button type="button" class="btn btn-dark btn-sm mt-2"><a
                                                 style="text-decoration: none; color: white;" href="/show/{{product.id}}">Check Product</a></button>

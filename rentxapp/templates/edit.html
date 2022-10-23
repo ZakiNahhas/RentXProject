@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
+    <title>RentX</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -55,10 +55,10 @@
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-md-9 col-lg-7 col-xl-6">
           <div class="card" style="border-radius: 15px;">
-            <div class="card-body p-5">
-              <h2 class="text-uppercase text-center mb-5">C<span class="text-danger">r</span>eate an account</h2>
+            <div class="card-body">
+              <h2 class="text-uppercase text-center mb-5">Update P<span class="text-danger">r</span>roduct</h2>
 
-              <form method="post" action="/update/{{oneproduct.id}}">
+              <form method="post" action="/update/{{oneproduct.id}}" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="form-outline mb-4">
                   <label for="formGroupExampleInput">name</label>
@@ -85,10 +85,15 @@
                     {%for category in categories%}
                     
                     <option value="{{category.id}}" >{{category.name}}</option>
-                   
+
                     {%endfor%}
                   </select>
                 </div>
+
+                <div class="form-outline mb-4">
+                  <input type="file" class="form-control" id="customFile" name="proimage" accept="image/*" required/>
+                </div>
+
                 <div class="d-flex justify-content-center">
                   <button type="submit"
                     class="btn btn-dark btn-block btn-lg gradient-custom-4 btn-primary" type="submit">Update!</button>

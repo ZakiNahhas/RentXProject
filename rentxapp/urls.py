@@ -32,5 +32,6 @@ urlpatterns = [
     path('renting/<int:id>', views.renting),
     # path('rentdone/<int:id>', views.rentdone),
     path("unrent/<int:id>", views.unrent),
+    path('adminzreport', views.adminreport)
     
 ]
